@@ -27,4 +27,15 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory(){
         enterpriseList=new ArrayList<Enterprise>();
     }
+    
+      //Create enterprise
+    public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
+        Enterprise enterprise=null;
+        if(type==Enterprise.EnterpriseType.AwarenessCamp){
+            enterprise = new AwarenessCamp(name);
+            enterpriseList.add(enterprise);
+            
+        }
+        return enterprise;
+    }
 }

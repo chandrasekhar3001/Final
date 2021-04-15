@@ -4,12 +4,14 @@
  */
 package Business.Role;
 
-
+import Business.Person.DonorDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organ.Organ;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -50,7 +52,8 @@ public abstract class Role {
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem business,
-            Network network);
+            Network network,
+            DonorDirectory donorDirectory);
 
     @Override
     public String toString() {

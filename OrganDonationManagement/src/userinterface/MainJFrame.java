@@ -10,9 +10,11 @@ import Business.Enterprise.*;
 
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Person.DonorDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import userinterface.DonorRole.DonorWorkAreaJPanel;
 
 /**
  *
@@ -26,7 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     //private EnterpriseDirectory enterpriseDirectory;
-
+     private DonorDirectory donorDirectory;
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -178,7 +180,22 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_donorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donorActionPerformed
-
+      // TODO add your handling code here:
+//        CardLayout layout=(CardLayout)container.getLayout();
+//            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+//            layout.next(container);
+//        Enterprise inEnterprise=null;
+//        Organization inOrganization=null;
+        
+        //DonorWorkAreaJPanel donorJPanel = new DonorWorkAreaJPanel(container, inOrganization, inEnterprise, system);
+        //SplitPane.setRightComponent(donorJPanel);
+        DonorWorkAreaJPanel donorWorkAreaJPanel = new DonorWorkAreaJPanel(container, system, donorDirectory, dB4OUtil);
+          container.add("donorWorkAreaJPanel", donorWorkAreaJPanel);
+          CardLayout layout=(CardLayout)container.getLayout();
+          layout.next(container);
+          
+        //DonorRegistrationFormJPanel donorRegistrationJPanel = new DonorRegistrationFormJPanel((), system, email, city, donorDirectory)
+                                         
     }//GEN-LAST:event_btn_donorActionPerformed
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
@@ -224,7 +241,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, inNetwork));
+            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, inNetwork, donorDirectory));
             layout.next(container);
         }
 
