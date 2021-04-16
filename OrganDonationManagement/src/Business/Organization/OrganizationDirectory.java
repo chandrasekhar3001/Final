@@ -41,23 +41,23 @@ public class OrganizationDirectory {
 //            organization = new OrganManagement();
 //            organizationList.add(organization);
 //        }
-        if(type.getValue().equals(Type.PoliciesAndFinance.getValue())){
-             organization = new PoliciesAndFinance();
-            organizationList.add(organization);
+ //       if(type.getValue().equals(Type.PoliciesAndFinance.getValue())){
+   //          organization = new PoliciesAndFinance();
+  //          organizationList.add(organization);
         
-        }
-        else if(type.getValue().equals(Type.AwarnessCampaign.getValue())){
-             organization = new AwarnessCampaign();
-            organizationList.add(organization);
-        
-        }
+//        }
+//        else if(type.getValue().equals(Type.AwarnessCampaign.getValue())){
+//             organization = new AwarnessCampaign();
+//            organizationList.add(organization);
+//        
+//        }
        // else if(type.getValue().equals(Type.User.getValue())){
          //    organization = new User();
           //  organizationList.add(organization);
         
       //  }
-        else if(type.getValue().equals(Type.Therapist.getValue())){
-             organization = new Therapist();
+        if(type.getValue().equals(Type.Therapist.getValue())){
+             organization = new Therapists();
             organizationList.add(organization);
         
         }
