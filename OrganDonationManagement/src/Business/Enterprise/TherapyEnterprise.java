@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 package Business.Enterprise;
+
 import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author mruna
+ * @author chandrasekhar
  */
-public class AwarenessCamp extends Enterprise{
-        public AwarenessCamp(String name){
-        super(name,EnterpriseType.AwarenessCamp);
+public class TherapyEnterprise extends Enterprise {
+    public TherapyEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.Therapy);
     }
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
 }

@@ -7,10 +7,12 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Role.Role;
+import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author saras
  */
 public abstract class Enterprise extends Organization{
     
@@ -24,11 +26,9 @@ public abstract class Enterprise extends Organization{
     public enum EnterpriseType{
         Hospital("Hospital"),
         OrganBank("Organ Bank"),
-        AwarenessCamp("Awareness Camp");
-        
-       
-       
-        
+        Government("Government"),
+        Therapy("Therapy");
+
         private String value;
         
         private EnterpriseType(String value){
