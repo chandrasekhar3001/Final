@@ -91,7 +91,6 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         btnSubmit.setBackground(new java.awt.Color(0, 51, 102));
         btnSubmit.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/Knob-Forward-icon.png"))); // NOI18N
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +127,6 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         btnSubmit1.setBackground(new java.awt.Color(0, 51, 102));
         btnSubmit1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnSubmit1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/Knob-Fast-Rewind-icon.png"))); // NOI18N
         btnSubmit1.setText("Exit");
         btnSubmit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
