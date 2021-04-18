@@ -8,24 +8,22 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.Medical;
 import Business.Organization.Organization;
-import static Business.Organization.Organization.Type.Medical;
-import Business.Organization.Therapists;
 import Business.Person.DonorDirectory;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.DoctorRole.DoctorWorkAreaJPanel;
+import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
+import userinterface.PatientRole.PatientJPanel;
 
 /**
  *
- * @author saras
+ * @author chandrasekhar
  */
-public class Doctor extends Role {
+public class Patient extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network, DonorDirectory donorDirectory) {
-        return new DoctorWorkAreaJPanel(userProcessContainer,account, (Medical)organization, enterprise,business, network);
+        return new PatientJPanel(userProcessContainer, enterprise);
     }
-    
+
 }
