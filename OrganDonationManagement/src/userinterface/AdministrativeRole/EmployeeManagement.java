@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author saras
+ * @author chandrasekhar
  */
 public class EmployeeManagement extends javax.swing.JPanel {
 
@@ -37,7 +37,7 @@ public class EmployeeManagement extends javax.swing.JPanel {
     
     public void initOrganizationEmpComboBox(){
         cmbxOrganization.removeAllItems();
-        
+        JOptionPane.showMessageDialog(null, organizationDirectory.getOrganizationList());
         for (Organization organization : organizationDirectory.getOrganizationList()){
             cmbxOrganization.addItem(organization);
         }

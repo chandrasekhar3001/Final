@@ -23,7 +23,6 @@ public class DonorDirectory {
         organs.add("Lungs");
         organs.add("Kidney");
         organs.add("Liver");
-        createDonor("Krishna", 20, "M", "O postive", "959595955", "15C corenila", "Gopi Krishna", "gopimanchu@gmail.com", "Sakshi", "8572727337", true, organs);
     }
 
     public ArrayList<Donor> getDonorList() {
