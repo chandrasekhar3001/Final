@@ -6,6 +6,7 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.WorkQueue;
 //import Business.WorkQueue.WorkQueue;
 import java.util.Date;
 
@@ -14,21 +15,28 @@ import java.util.Date;
  * @author raunak
  */
 public class UserAccount {
-    
     private String username;
     private String password;
     private Employee employee;
     private Role role;
-    //private WorkQueue workQueue;
+    private WorkQueue workQueue;
     private String phNumber;
     private String Address;
     private String qualifications;
     private String profile;
     private int age;
-    //public Date date;
+    public Date date;
     private String sex;
     private boolean isAvailable;
     private boolean isAvailableforOrgan;
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
 
     public boolean isIsAvailableforOrgan() {
         return isAvailableforOrgan;

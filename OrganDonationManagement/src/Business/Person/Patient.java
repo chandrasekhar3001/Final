@@ -5,6 +5,8 @@
  */
 package Business.Person;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author chandrasekhar
@@ -13,14 +15,17 @@ public class Patient {
     private int id;
     private String name;
     private String age;
+    private String sex;
     private String phnNum;
     private String speciality;
     private String doctor;
     private boolean alive;
     private boolean donor;
     private boolean directdonation;
-
-    public Patient(int id, String name, String age, String phnNum, String speciality, String doctor, boolean alive, boolean donor, boolean directdonation) {
+    private ArrayList<String> organs;
+    private ArrayList<String> testData;
+    
+    public Patient(int id, String name, String age,String sex, String phnNum, String speciality, String doctor, boolean alive, boolean donor, boolean directdonation,ArrayList<String> organs,ArrayList<String> testData) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -30,6 +35,8 @@ public class Patient {
         this.alive = alive;
         this.donor = donor;
         this.directdonation = directdonation;
+        this.organs=organs;
+        this.testData=testData;
     }
 
     
@@ -103,6 +110,30 @@ public class Patient {
 
     public void setDirectdonation(boolean directdonation) {
         this.directdonation = directdonation;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public ArrayList<String> getOrgans() {
+        return organs;
+    }
+
+    public void setOrgans(ArrayList<String> organs) {
+        this.organs = organs;
+    }
+
+    public ArrayList<String> getTestData() {
+        return testData;
+    }
+
+    public void setTestData(ArrayList<String> testData) {
+        this.testData = testData;
     }
     
     

@@ -7,6 +7,8 @@
         <Property name="text" type="java.lang.String" value="jTextField4"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -45,6 +47,7 @@
                                   <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -54,14 +57,16 @@
                                   <Component id="cb_dept" alignment="0" pref="224" max="32767" attributes="0"/>
                                   <Component id="cb_doctor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txt_phnNum" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cb_gen" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btn_save" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_back" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="207" max="32767" attributes="0"/>
+              <EmptySpace pref="194" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +90,12 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_age" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cb_gen" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_phnNum" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -100,11 +110,11 @@
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cb_doctor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="btn_save" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btn_back" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -197,6 +207,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sex :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cb_gen">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="--Select--"/>
+            <StringItem index="1" value="Male"/>
+            <StringItem index="2" value="Female"/>
+            <StringItem index="3" value="Others"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

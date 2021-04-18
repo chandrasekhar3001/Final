@@ -23,8 +23,8 @@ public class PatientDirectory {
     }     
     
     
-     public Patient createPatient(int id,String name,String age,String phnNum,String speciality,String doctor,boolean alive,boolean donor,boolean directdonor){
-         Patient p=new Patient(id, name, age, phnNum, speciality, doctor, alive, donor, directdonor);
+     public Patient createPatient(int id,String name,String age,String sex,String phnNum,String speciality,String doctor,boolean alive,boolean donor,boolean directdonor,ArrayList<String> organs,ArrayList<String> testData){
+         Patient p=new Patient(id, name, age,sex, phnNum, speciality, doctor, alive, donor, directdonor,organs,testData);
          patientList.add(p);
          return p;
      }

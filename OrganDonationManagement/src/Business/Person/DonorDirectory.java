@@ -29,9 +29,10 @@ public class DonorDirectory {
         return donorList;
     }
     
-    public Donor createDonor(String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
+    public Donor createDonor(int id,String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
                 String emailAdd, String emergencyPOC, String emergencyPOC_Num, boolean isOrganAvaiNow, List<String >organs){
         Donor donor = new Donor();
+        donor.setDonorId(id);
         donor.setName(name);
         donor.setAge(age);
         donor.setGender(sex);

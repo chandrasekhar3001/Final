@@ -13,6 +13,7 @@ import Business.Organization.Organization;
 import Business.Person.DonorDirectory;
 import Business.Person.PatientDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import userinterface.DonorRole.DonorWorkAreaJPanel;
@@ -34,16 +35,23 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+        //system.setPatientId(1001);
+        //system.setEmployeeId(20211001);
+        //system.setDonorId(50011001);
         //system.setPatientDirectory(new PatientDirectory());
        //system = new EnterpriseDirectory();
         //PatientDirectory pd=new PatientDirectory();
-        
+        //system.setWorkQueue(new WorkQueue());
         //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).setPatientDirectory(new PatientDirectory());
 
-        
+        /*System.out.println(system.getPatientId());
+        System.out.println(system.getEmployeeId());
+        System.out.println(system.getDonorId());
+        System.out.println(system.getPatientDirectory().getPatientList());
+        */
         
        //System.out.println(system.getNetworkList());
-       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0));
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getWorkQueue().getWorkRequestList());
        //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory());
        //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).getPatientDirectory().getPatientList().get(0).getDoctor());
        
@@ -293,6 +301,8 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
+            JOptionPane.showMessageDialog(null, userAccount.getRole());
+            JOptionPane.showMessageDialog(null, system.getPatientId());
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, inNetwork, donorDirectory));
             layout.next(container);
         }

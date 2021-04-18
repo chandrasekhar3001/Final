@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chandrasekhar
+ * @author mruna
  */
 public class AwarnessCampaign extends Organization {
 

@@ -14,6 +14,8 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Business.EcoSystem;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,16 +26,19 @@ public class PatientManagement extends javax.swing.JPanel {
     JPanel userProcessContainer;
     OrganizationDirectory organizationDirectory; 
     Enterprise enterprise;
+    EcoSystem ecoSystem;
     /**
      * Creates new form PatientManagement
      */
-    public PatientManagement(JPanel userProcessContainer, OrganizationDirectory organizationDirectory, Enterprise enterprise) {
+    public PatientManagement(JPanel userProcessContainer, OrganizationDirectory organizationDirectory, Enterprise enterprise,EcoSystem ecoSystem) {
         this.userProcessContainer=userProcessContainer;
         this.organizationDirectory=organizationDirectory;
         this.enterprise=enterprise;
+        this.ecoSystem=ecoSystem;
         
         initComponents();
         initcb_dept();
+        txt_patId.setText(""+this.ecoSystem.getPatientId());      
     }
 
     /**
@@ -46,6 +51,7 @@ public class PatientManagement extends javax.swing.JPanel {
     private void initComponents() {
 
         jTextField4 = new javax.swing.JTextField();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -61,6 +67,8 @@ public class PatientManagement extends javax.swing.JPanel {
         txt_phnNum = new javax.swing.JTextField();
         btn_save = new javax.swing.JButton();
         btn_back = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cb_gen = new javax.swing.JComboBox<>();
 
         jTextField4.setText("jTextField4");
 
@@ -107,6 +115,10 @@ public class PatientManagement extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText("Sex :");
+
+        cb_gen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Male", "Female", "Others" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +138,8 @@ public class PatientManagement extends javax.swing.JPanel {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_patId)
@@ -134,10 +147,12 @@ public class PatientManagement extends javax.swing.JPanel {
                                     .addComponent(txt_age)
                                     .addComponent(cb_dept, 0, 224, Short.MAX_VALUE)
                                     .addComponent(cb_doctor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_phnNum)))
+                                    .addComponent(txt_phnNum)
+                                    .addComponent(cb_gen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(13, 13, 13))
                             .addComponent(btn_save, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_back, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +171,11 @@ public class PatientManagement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cb_gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txt_phnNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,11 +187,11 @@ public class PatientManagement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cb_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(38, 38, 38)
                 .addComponent(btn_save)
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(btn_back)
-                .addGap(91, 91, 91))
+                .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,16 +238,24 @@ public class PatientManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter a proper age value");
             return;
         }
+        check=cb_gen.getSelectedIndex()>0;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Please select a gender");
+            return;
+        }
 
         //Organization organization = (Organization) cb_dept.getSelectedItem();
         //JOptionPane.showMessageDialog(null, cb_dept.getSelectedItem());
         //JOptionPane.showMessageDialog(null, organization.getName());
         
+        ArrayList<String> organs=new ArrayList<>();
+        ArrayList<String> testData=new ArrayList<>();
         for(int i=0;i<organizationDirectory.getOrganizationList().size();i++){
             if(organizationDirectory.getOrganizationList().get(i).getName().equalsIgnoreCase(cb_dept.getSelectedItem().toString())){
                 Organization organization=organizationDirectory.getOrganizationList().get(i);
                 JOptionPane.showMessageDialog(null, organization.getPatientDirectory());
-                organization.getPatientDirectory().createPatient(Integer.parseInt(txt_patId.getText()),txt_name.getText(),txt_age.getText(),txt_phnNum.getText(),cb_dept.getSelectedItem().toString(),cb_doctor.getSelectedItem().toString(),true,false,false);
+                organization.getPatientDirectory().createPatient(ecoSystem.getPatientId(),txt_name.getText(),txt_age.getText(),cb_gen.getSelectedItem().toString(),txt_phnNum.getText(),cb_dept.getSelectedItem().toString(),cb_doctor.getSelectedItem().toString(),true,false,false,organs,testData);
+                ecoSystem.incPatientId();
                 break;
             }
         }
@@ -273,8 +300,10 @@ public class PatientManagement extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_save;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_dept;
     private javax.swing.JComboBox<String> cb_doctor;
+    private javax.swing.JComboBox<String> cb_gen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -282,6 +311,7 @@ public class PatientManagement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_name;

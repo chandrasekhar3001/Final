@@ -22,6 +22,10 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private ArrayList<Donor> donorDirectory;
+    int patientId;
+    int employeeId;
+    int donorId;
+
 
     public static EcoSystem getInstance(){
         if(business==null){
@@ -58,7 +62,35 @@ public class EcoSystem extends Organization{
         this.donorDirectory = donorDirectory;
     }
     
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+    public int getPatientId() {
+        return patientId;
+    }
+    public void incPatientId() {
+        patientId++;
+    }
     
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+    public int getEmployeeId() {
+        return employeeId;
+    }
+    public void incEmployeeId() {
+        employeeId++;
+    }
+    
+    public void setDonorId(int donorId) {
+        this.donorId = donorId;
+    }
+    public int getDonorId() {
+        return donorId;
+    }
+    public void incDonorId() {
+        donorId++;
+    }
     
     
     public Network createAndAddNetwork(){

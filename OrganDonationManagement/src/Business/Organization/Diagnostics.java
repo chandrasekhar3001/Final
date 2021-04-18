@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chandrasekhar
+ * @author mrunal
  */
 public class Diagnostics extends Organization{
     
