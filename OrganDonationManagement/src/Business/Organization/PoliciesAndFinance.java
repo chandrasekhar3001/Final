@@ -5,17 +5,17 @@
  */
 package Business.Organization;
 
+import Business.Role.HealthOfficier;
 import Business.Role.Role;
-import Business.Role.TherapistRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author saras
+ * @author chandrasekhar
  */
-public class Therapists extends Organization{
-    
-    public Therapists(String name){
+public class PoliciesAndFinance extends Organization {
+
+    public PoliciesAndFinance(String name){
         super(name);
 
     }
@@ -23,12 +23,12 @@ public class Therapists extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new TherapistRole());
+        roles.add(new HealthOfficier());
         return roles;
     }
     @Override
     public Type getType() {
-        return Organization.Type.Therapist;
+        return Organization.Type.PoliciesFinance;
     } 
     
     

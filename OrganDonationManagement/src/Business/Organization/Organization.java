@@ -5,6 +5,7 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Person.PatientDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 //import Business.WorkQueue.WorkQueue;
@@ -20,8 +21,11 @@ public abstract class Organization {
     //private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private PatientDirectory patientDirectory;
     private int organizationID;
     private static int counter=0;
+    private Type type;
+
     
     public enum Type{
         Medical("Medical"), 
@@ -46,10 +50,19 @@ public abstract class Organization {
         //workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        patientDirectory=new PatientDirectory();
         organizationID = counter;
         ++counter;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+    
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
@@ -70,6 +83,14 @@ public abstract class Organization {
     
     public void setName(String name) {
         this.name = name;
+    }
+
+    public PatientDirectory getPatientDirectory() {
+        return patientDirectory;
+    }
+
+    public void setPatientDirectory(PatientDirectory patientDirectory) {
+        this.patientDirectory = patientDirectory;
     }
     
     @Override
