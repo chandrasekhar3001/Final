@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author chandrasekhar
+ * @author saras
  */
 public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
 
