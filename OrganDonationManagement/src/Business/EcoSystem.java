@@ -21,7 +21,7 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private ArrayList<Network> networkList;
-     private ArrayList<Donor> donorDirectory;
+    private ArrayList<Donor> donorDirectory;
 
     public static EcoSystem getInstance(){
         if(business==null){

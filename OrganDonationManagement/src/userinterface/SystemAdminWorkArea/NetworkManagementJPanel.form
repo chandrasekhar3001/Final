@@ -55,16 +55,16 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel6" min="-2" pref="89" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nameJTextField1" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <Component id="txtNetworkName" min="-2" pref="216" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="submitJButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteCity" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" pref="89" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nameJTextField" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <Component id="txtName" min="-2" pref="216" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="submitJButton" max="32767" attributes="0"/>
+                                  <Component id="btnAddCity" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -91,8 +91,8 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="nameJTextField" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="submitJButton" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="txtName" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="btnAddCity" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -104,8 +104,8 @@
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="nameJTextField1" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="submitJButton1" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="txtNetworkName" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="btnDeleteCity" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -166,7 +166,7 @@
         <Property name="text" type="java.lang.String" value="Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="submitJButton">
+    <Component class="javax.swing.JButton" name="btnAddCity">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="33" red="0" type="rgb"/>
@@ -180,10 +180,10 @@
         <Property name="text" type="java.lang.String" value="Add City"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitJButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCityActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="nameJTextField">
+    <Component class="javax.swing.JTextField" name="txtName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Cambria" size="18" style="0"/>
@@ -240,7 +240,7 @@
         <Property name="text" type="java.lang.String" value="Delete a city from netwrok"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="submitJButton1">
+    <Component class="javax.swing.JButton" name="btnDeleteCity">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="33" red="0" type="rgb"/>
@@ -254,10 +254,10 @@
         <Property name="text" type="java.lang.String" value="Delete City"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitJButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteCityActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="nameJTextField1">
+    <Component class="javax.swing.JTextField" name="txtNetworkName">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

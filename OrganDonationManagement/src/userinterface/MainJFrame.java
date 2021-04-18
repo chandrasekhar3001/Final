@@ -11,6 +11,7 @@ import Business.Enterprise.*;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Person.DonorDirectory;
+import Business.Person.PatientDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -33,7 +34,24 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
-       // system = new EnterpriseDirectory();
+        //system.setPatientDirectory(new PatientDirectory());
+       //system = new EnterpriseDirectory();
+        //PatientDirectory pd=new PatientDirectory();
+        
+        //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).setPatientDirectory(new PatientDirectory());
+
+        
+        
+       //System.out.println(system.getNetworkList());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0));
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).getPatientDirectory().getPatientList().get(0).getDoctor());
+       
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(0).getPatientDirectory());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).getEmployeeDirectory().getEmployeeList().get(1).getId());
+       //System.out.println(system.getNetworkList().get(0).getName());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList());
+        //System.out.println();
     }
 
     /**
@@ -222,19 +240,53 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // Get user name
-
+       
         String userName = txt_username.getText();
         // Get Password
         char[] passwordCharArray = txt_password.getPassword();
         String password = String.valueOf(passwordCharArray);
-
+        
         //Step1: Check in the system admin user account directory if you have the user
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-
+        
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
         Network inNetwork=null;
-
+        
+        if(userAccount==null){
+            //Step 2: Go inside each network and check each enterprise
+            for(Network network:system.getNetworkList()){
+                System.out.println(network.getEnterpriseDirectory().getEnterpriseList());
+                //Step 2.a: check against each enterprise
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    System.out.println(enterprise);
+                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if(userAccount==null){
+                       //Step 3:check against each organization for each enterprise
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null){
+                               inNetwork=network;
+                               inEnterprise=enterprise;
+                               inOrganization=organization;
+                               break;
+                           }
+                       }    
+                    }
+                    else{
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
+            }
+        }
+        
         if(userAccount==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
