@@ -8,17 +8,18 @@ import Business.Employee.EmployeeDirectory;
 import Business.Person.PatientDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.WorkQueue;
 //import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author mruna
  */
 public abstract class Organization {
 
     private String name;
-    //private WorkQueue workQueue;
+    private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private PatientDirectory patientDirectory;
@@ -91,6 +92,14 @@ public abstract class Organization {
 
     public void setPatientDirectory(PatientDirectory patientDirectory) {
         this.patientDirectory = patientDirectory;
+    }
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
     }
     
     @Override

@@ -4,6 +4,7 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
@@ -23,14 +24,16 @@ public class EmployeeManagement extends javax.swing.JPanel {
     private OrganizationDirectory organizationDirectory;
     private JPanel userProcessContainer;
     ArrayList<String> userList = new ArrayList<String>();
+    EcoSystem ecoSystem;
     
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public EmployeeManagement(JPanel userProcessContainer,OrganizationDirectory organizationDirectory,Enterprise enterprise) {
+    public EmployeeManagement(JPanel userProcessContainer,OrganizationDirectory organizationDirectory,Enterprise enterprise,EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDirectory = organizationDirectory;
+        this.ecoSystem=ecoSystem;
         initOrganizationEmpComboBox();
     }
     
@@ -43,18 +46,24 @@ public class EmployeeManagement extends javax.swing.JPanel {
         }
     }
 
-    private void initTable(Organization organization){
+    private void initTable(){
         DefaultTableModel model = (DefaultTableModel) tblCurrentEmployees.getModel();
         
         model.setRowCount(0);
-        
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+
+        for(Organization or:organizationDirectory.getOrganizationList()){
+            for (Employee employee : or.getEmployeeDirectory().getEmployeeList()){
             Object[] row = new Object[2];
             row[0] = employee.getId();
             row[1] = employee.getName();
             userList.add(employee.getName());
             model.addRow(row);
         }
+        }
+        
+        
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -221,8 +230,9 @@ public class EmployeeManagement extends javax.swing.JPanel {
         }
      
         if(name.matches("^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$")){
-        organization.getEmployeeDirectory().createEmployee(name);
-        initTable(organization);
+        organization.getEmployeeDirectory().createEmployee(ecoSystem.getEmployeeId(),name);
+        ecoSystem.incEmployeeId();
+        initTable();
         txtName.setText("");}
          else{
             JOptionPane.showMessageDialog(null, "Names can't contain numbers or special characters");

@@ -2,8 +2,10 @@
 
 package userinterface.AdministrativeRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,11 +16,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
+    EcoSystem ecoSystem;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.ecoSystem=ecoSystem;
     }
     
     /** This method is called from within the constructor to
@@ -134,7 +138,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btn_manageEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_manageEmployeesActionPerformed
         // TODO add your handling code here:
-        EmployeeManagement em = new EmployeeManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise);
+        EmployeeManagement em = new EmployeeManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise,ecoSystem);
         userProcessContainer.add("manageOrganizationJPanel", em);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -142,7 +146,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btn_patientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_patientsActionPerformed
         // TODO add your handling code here:
-        PatientManagement pm = new PatientManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise);
+        PatientManagement pm = new PatientManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise,ecoSystem);
         userProcessContainer.add("manageOrganizationJPanel", pm);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

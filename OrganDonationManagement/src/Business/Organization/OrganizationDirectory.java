@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author raunak
+ * @author chandrasekhar
  */
 public class OrganizationDirectory {
     

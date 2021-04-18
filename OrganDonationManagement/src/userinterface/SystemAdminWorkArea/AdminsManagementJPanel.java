@@ -374,8 +374,8 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         
          
         if(nameMatch && userNameMatch && passMatch){
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(system.getEmployeeId(),name);
+        system.incEmployeeId();
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
         userstring.add(username);
         populateTable();
