@@ -6,22 +6,58 @@
 package userinterface.EventOrganizerRole;
 
 import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
+import Business.Network.Network;
 import Business.Organization.AwarnessCampaign;
+import Business.Organization.Organization;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.EventWorkRequest;
+import Business.WorkQueue.WorkQueue;
+
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+//import userinterface.DoctorRole.RequestLabTestJPanel;
 
 /**
  *
  * @author chandrasekhar
  */
 public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private AwarnessCampaign organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EnterpriseDirectory enterpriseDirectory;
+    private EcoSystem ecosystem;
 
     /**
      * Creates new form EventOrganizerWorkAreaJPanel
      */
-    public EventOrganizerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AwarnessCampaign awarnessCampaign, EcoSystem business) {
+    public EventOrganizerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AwarnessCampaign organization, EcoSystem system) {
         initComponents();
+          this.userProcessContainer = userProcessContainer;
+          this.userAccount=account;
+          this.organization = organization;
+          this.ecosystem = system;
+//          valueLabel.setText(enterprise.getName());
+          
+            valueLabel.setText("Event Management");
+        profileName.setText(userAccount.getUsername());
+        quals.setText(userAccount.getQualifications());
+         // profilepic();
+          populateRequestTable();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,19 +68,269 @@ public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        workRequestJTable = new javax.swing.JTable();
+        enterpriseLabel = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
+        profileName = new javax.swing.JLabel();
+        quals = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lbluser = new javax.swing.JLabel();
+        btnCreate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        Assign = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 474));
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Event Organizer Work Area");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(26, 11, 1607, 29);
+
+        workRequestJTable.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Event Name", "Venue", "Date", "Time", "Comments", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(workRequestJTable);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(230, 140, 810, 200);
+
+        enterpriseLabel.setFont(new java.awt.Font("Cambria", 2, 18)); // NOI18N
+        enterpriseLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        enterpriseLabel.setText("EnterPrise :");
+        jPanel1.add(enterpriseLabel);
+        enterpriseLabel.setBounds(252, 58, 87, 30);
+
+        valueLabel.setFont(new java.awt.Font("Cambria", 2, 18)); // NOI18N
+        valueLabel.setText("<value>");
+        jPanel1.add(valueLabel);
+        valueLabel.setBounds(344, 60, 317, 26);
+
+        profileName.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        profileName.setText("UserName");
+        jPanel1.add(profileName);
+        profileName.setBounds(10, 289, 164, 22);
+
+        quals.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        quals.setText("quals");
+        jPanel1.add(quals);
+        quals.setBounds(10, 332, 164, 25);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(222, 58, 14, 1011);
+
+        lbluser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        lbluser.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbluser.setText("Username:");
+        jPanel1.add(lbluser);
+        lbluser.setBounds(10, 262, 84, 22);
+
+        btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCreate);
+        btnCreate.setBounds(490, 90, 65, 23);
+
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(631, 83, 80, 20);
+
+        Assign.setText("Assign");
+        Assign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AssignActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Assign);
+        Assign.setBounds(970, 360, 80, 23);
+
+        jButton2.setText("Comment");
+        jPanel1.add(jButton2);
+        jButton2.setBounds(810, 360, 100, 23);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1670, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("CreateEventJPanel", new CreateEventJPanel(userProcessContainer, userAccount, enterprise,ecosystem));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        populateRequestTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void AssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssignActionPerformed
+        // TODO add your handling code here:
+      /*   if(jcombodeliveryMan.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a Delivery Man");
+            return;
+        }
+        int selectedRow = tblOrder.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Select Order to assign Delivery", "Warining", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        Order order = (Order) tblOrder.getValueAt(selectedRow,0);
+        if(!order.getOrderStatus().equals("Order Ready for Pick up")){
+        JOptionPane.showMessageDialog(null,"Order should be ready for Pick Up", "Warining", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        order.setDeliveryMan(jcombodeliveryMan.getSelectedItem().toString());
+        order.setOrderStatus("Order Picked up");
+        variable= true;
+        populateTable();*/
+      int selectedRow = workRequestJTable.getSelectedRow();
+       EventWorkRequest  ewr  = (EventWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        //System.out.println(message);
+       for( Organization oa : enterprise.getOrganizationDirectory().getOrganizationList()){
+           for (Role ra :oa.getSupportedRole()){
+               System.out.println("Chandu"+ra);
+           
+           }
+          for(Employee ea : oa.getEmployeeDirectory().getEmployeeList()){
+              System.out.println("siva"+ea.getName());
+              System.out.println("sai"+ ea.getId());
+          }
+       }
+       
+        //((EventWorkRequest) request).setVenue(venueField.getText());
+        //row[1] = request.getReceiver();
+        //row[2] = ((EventWorkRequest) request).getDate();
+        //String result = ((EventWorkRequest) request).getTestResult();
+        //row[3] =((EventWorkRequest) request).getTime();
+        
+        //organization.getWorkQueue().getWorkRequestList().add(request);
+       
+        // System.out.println("Inside Organ Work Request");
+        
+
+        //        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            //            System.out.println(organization);
+            //            if (organization instanceof OrganTissueDonationOrganization) {
+                //
+                //                org = organization;
+                //                break;
+                //            }
+            //        }
+     /*   if (org != null) {
+            // OrganTissueDonationOrganization org1 = (OrganTissueDonationOrganization) org;
+            //WorkQueue wq = new WorkQueue();
+           // org.setWorkQueue(wq);
+            org.getWorkQueue().getWorkRequestList().add(request);
+            //userAccount.setWorkQueue(wq);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+            //System.out.println(org+" and work request"+org.getWorkQueue().getWorkRequestList());
+            //System.out.println("User work request and work request"+userAccount.getWorkQueue().getWorkRequestList().toString());
+
+            // System.out.println();
+            // System.out,
+            //System.out.println("Organization Work Queue--------- ");
+            //System.out.println(org.getWorkQueue().getWorkRequestList());
+            for (WorkRequest request1 : org.getWorkQueue().getWorkRequestList()){
+                System.err.println("organ work request"+request.toString());
+            }
+
+        }*/
+      
+    }//GEN-LAST:event_AssignActionPerformed
+public void populateRequestTable(){
+    
+    
+    if(userAccount.getWorkQueue()==null){}
+    else{
+     DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            //System.out.println("Work request List "+ request);
+             if(request instanceof EventWorkRequest){
+               
+            
+          
+            Object[] row = new Object[8];
+            row[0] = request;
+            row[1] = ((EventWorkRequest) request).getVenue();
+            //row[1] = request.getReceiver();
+            row[2] = ((EventWorkRequest) request).getDate();
+            //String result = ((EventWorkRequest) request).getTestResult();
+            row[3] =((EventWorkRequest) request).getTime();
+            row[5] =((EventWorkRequest) request).getStatus();
+            
+            model.addRow(row);}
+        }
+    }
+        
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Assign;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbluser;
+    private javax.swing.JLabel profileName;
+    private javax.swing.JLabel quals;
+    private javax.swing.JLabel valueLabel;
+    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
