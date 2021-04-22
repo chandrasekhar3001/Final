@@ -7,22 +7,47 @@ package userinterface.HealthOfficer;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
+import Business.Organization.AwarnessCampaign;
 import Business.Organization.PoliciesAndFinance;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.EventWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mrunal <your.name at your.org>
+ * @author saras 
  */
 public class HealthOfficerJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateNGOJPanel
      */
-    public HealthOfficerJPanel(JPanel userProcessContainer, UserAccount account, PoliciesAndFinance policiesAndFinance, Enterprise enterprise, EcoSystem business, Network network) {
+    private JPanel userProcessContainer;
+    private AwarnessCampaign awarnesscamp;
+    private PoliciesAndFinance organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EnterpriseDirectory enterpriseDirectory;
+    private EcoSystem ecosystem;
+    public HealthOfficerJPanel(JPanel userProcessContainer, UserAccount account, PoliciesAndFinance organization, Enterprise enterprise, EcoSystem business, Network network) {
+       
         initComponents();
+          this.userProcessContainer = userProcessContainer;
+          this.userAccount=account;
+          this.organization = organization;
+          this.ecosystem = business;
+//          valueLabel.setText(enterprise.getName());
+          
+            //valueLabel.setText("Event Management");
+        //profileName.setText(userAccount.getUsername());
+        //quals.setText(userAccount.getQualifications());
+         // profilepic();
+          populateRequestTable();
     }
 
     /**
@@ -36,7 +61,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
 
         lblNGOtitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEvent = new javax.swing.JTable();
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
         lblViewDonor = new javax.swing.JLabel();
@@ -50,28 +75,25 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
 
         lblNGOtitle.setText("FUNDING REQUEST");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEvent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "NGO", "Event", "Money", "STATUS"
+                "Name", "Venue", "Date", "Timel", "Status"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(tblEvent);
 
         btnAccept.setText("ACCEPT");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnDecline.setText("DECLINE");
         btnDecline.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +205,22 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeclineActionPerformed
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+         
+        
+        int selectedRow = tblEvent.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please Select a row from table first", "Warining", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        System.out.println(tblEvent.getValueAt(selectedRow, 0));
+        EventWorkRequest ewr = (EventWorkRequest)tblEvent.getValueAt(selectedRow,0);
+        ewr.setStatus("Completed");
+        populateRequestTable();
+        
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
@@ -192,11 +230,36 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comDonor;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFilePath;
     private javax.swing.JLabel lblNGOtitle;
     private javax.swing.JLabel lblPublishPolicy;
     private javax.swing.JLabel lblViewDonor;
+    private javax.swing.JTable tblEvent;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRequestTable() {
+        //To change body of generated methods, choose Tools | Templates.
+        DefaultTableModel model = (DefaultTableModel) tblEvent.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            //System.out.println("Work request List "+ request);
+            
+             if(request instanceof EventWorkRequest){
+               
+            
+          
+            Object[] row = new Object[6];
+            row[0] = request;
+            row[1] = ((EventWorkRequest) request).getVenue();
+            //row[1] = request.getReceiver();
+            row[2] = ((EventWorkRequest) request).getDate();
+            //String result = ((EventWorkRequest) request).getTestResult();
+            row[3] =((EventWorkRequest) request).getTime();
+            row[4] = ((EventWorkRequest) request).getStatus();
+            
+            model.addRow(row);}
+        }
+    }
 }
