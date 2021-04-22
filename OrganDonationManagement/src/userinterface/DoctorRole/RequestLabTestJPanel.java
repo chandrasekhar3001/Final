@@ -6,12 +6,13 @@ package userinterface.DoctorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Diagnostics;
 import Business.Organization.Medical;
 import Business.Organization.Organization;
 import Business.Person.Patient;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.DiagnosticsWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.logging.Level;
@@ -29,7 +30,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private Patient patientAccount;
-    //private LabTestWorkRequest testRequest;
+    //private DiagnosticsWorkRequest testRequest;
     /**
      * Creates new form RequestLabTestJPanel
      */
@@ -42,6 +43,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         this.patientAccount=patientAccount;
          requestTestJButton.setEnabled(true);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,13 +58,16 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         messageJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        vitamins = new javax.swing.JCheckBox();
-        glucose = new javax.swing.JCheckBox();
-        fullBlood = new javax.swing.JCheckBox();
+        reactive = new javax.swing.JCheckBox();
+        bloodtyping = new javax.swing.JCheckBox();
+        survivalcapability = new javax.swing.JCheckBox();
         others = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        wbcCount = new javax.swing.JCheckBox();
+        liverCulture = new javax.swing.JCheckBox();
+        kidneyCulture = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,22 +100,22 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jLabel2.setText("Specific test");
 
-        vitamins.setBackground(new java.awt.Color(255, 255, 255));
-        vitamins.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        vitamins.setText("Reactive Antibodies ");
-        vitamins.addActionListener(new java.awt.event.ActionListener() {
+        reactive.setBackground(new java.awt.Color(255, 255, 255));
+        reactive.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        reactive.setText("Reactive Antibodies ");
+        reactive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vitaminsActionPerformed(evt);
+                reactiveActionPerformed(evt);
             }
         });
 
-        glucose.setBackground(new java.awt.Color(255, 255, 255));
-        glucose.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        glucose.setText("Blood Typing");
+        bloodtyping.setBackground(new java.awt.Color(255, 255, 255));
+        bloodtyping.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        bloodtyping.setText("Blood Typing");
 
-        fullBlood.setBackground(new java.awt.Color(255, 255, 255));
-        fullBlood.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        fullBlood.setText("Survival Capability");
+        survivalcapability.setBackground(new java.awt.Color(255, 255, 255));
+        survivalcapability.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        survivalcapability.setText("Survival Capability");
 
         others.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,9 +130,26 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("REQUEST TEST ");
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 2, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setText("Select tests to be performed");
+        jLabel1.setText("Frequent Tests Conducted");
+
+        wbcCount.setBackground(new java.awt.Color(255, 255, 255));
+        wbcCount.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        wbcCount.setText("WBC Count");
+        wbcCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wbcCountActionPerformed(evt);
+            }
+        });
+
+        liverCulture.setBackground(new java.awt.Color(255, 255, 255));
+        liverCulture.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        liverCulture.setText("Liver Culture");
+
+        kidneyCulture.setBackground(new java.awt.Color(255, 255, 255));
+        kidneyCulture.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        kidneyCulture.setText("Kidney Culture");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,60 +159,66 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1640, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fullBlood, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vitamins, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(glucose)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(requestTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bloodtyping)
+                    .addComponent(reactive, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(survivalcapability, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wbcCount)
+                    .addComponent(liverCulture)
+                    .addComponent(kidneyCulture)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel5)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(fullBlood))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(vitamins))
-                    .addComponent(glucose))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21)
+                .addComponent(bloodtyping)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(survivalcapability)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reactive)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(wbcCount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(liverCulture)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                .addComponent(kidneyCulture)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backJButton)
-                    .addComponent(requestTestJButton)))
+                    .addComponent(requestTestJButton))
+                .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,27 +230,41 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         int f=0;
      
         
-        LabTestWorkRequest request = new LabTestWorkRequest();
+        DiagnosticsWorkRequest request = new DiagnosticsWorkRequest();
         request.setPatientAccount(patientAccount);
+        
         if(message==null||message.equals("")){
             JOptionPane.showMessageDialog(null, "please fill the comments field");
+            
             return;
         }
         request.setMessage(message);
       //  request.setSender(us);
        // request.setPatient_Name(pname);
         //request.setPatient_id(pid);
-        if(glucose.isSelected()){
+        if(bloodtyping.isSelected()){
                f=1;
-            request.getTests().add("Blood Glucose Test");
+            request.getTests().add("Blood Typing");
         }
-        if(fullBlood.isSelected()){
+        if(survivalcapability.isSelected()){
             f=1;
-            request.getTests().add("Full Blood Count Test");
+            request.getTests().add("Survival Capability");
         }
-        if(vitamins.isSelected()){
+        if(reactive.isSelected()){
             f=1;
-            request.getTests().add("Vitamins Test");
+            request.getTests().add("Reactive Antibodies");
+        }
+        if(wbcCount.isSelected()){
+            f=1;
+            request.getTests().add("WBC Count");
+        }
+        if(liverCulture.isSelected()){
+            f=1;
+            request.getTests().add("Liver Culture");
+        }
+        if(kidneyCulture.isSelected()){
+            f=1;
+            request.getTests().add("Kidney Culture");
         }
         if(others.getText().isEmpty()){
             
@@ -234,26 +276,28 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         request.setStatus("Sent");
         
         Organization org = null;
-        //System.out.println(enterprise.getOrganizationDirectory().getOrganizationList().size());
+        //System.out.println(enterprise.getOrganizationDirectory().getOrganizationList()+"yay");
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            JOptionPane.showMessageDialog(null, organization instanceof Diagnostics);
-            JOptionPane.showMessageDialog(null, organization instanceof Medical);
-            if (organization instanceof Medical){
+            if (organization instanceof Diagnostics){
                 org = organization;
-                break;
+                System.out.println(org+" and work request"+org.getWorkQueue().getWorkRequestList());
+                org.getWorkQueue().getWorkRequestList().add(request);
+                userAccount.getWorkQueue().getWorkRequestList().add(request);
             }
         }
+        /*JOptionPane.showMessageDialog(null, org.getName());
         if (org!=null){
             
             System.out.println(org+" and work request"+org.getWorkQueue().getWorkRequestList());
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
+        }*/
         
-          if(f==0){
+        if(f==0){
             JOptionPane.showMessageDialog(null, "Please fill the details");
         }else{
         JOptionPane.showMessageDialog(null, "Test requested");
+        patientAccount.setAlive(false);// to not repeat patient
         requestTestJButton.setEnabled(false);}
         
     }//GEN-LAST:event_requestTestJButtonActionPerformed
@@ -264,7 +308,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        //dwjp.populateRequestTable();
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
@@ -274,25 +318,32 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_othersActionPerformed
 
-    private void vitaminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitaminsActionPerformed
+    private void reactiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reactiveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_vitaminsActionPerformed
+    }//GEN-LAST:event_reactiveActionPerformed
 
     private void messageJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageJTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_messageJTextFieldActionPerformed
 
+    private void wbcCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wbcCountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wbcCountActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
-    private javax.swing.JCheckBox fullBlood;
-    private javax.swing.JCheckBox glucose;
+    private javax.swing.JCheckBox bloodtyping;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JCheckBox kidneyCulture;
+    private javax.swing.JCheckBox liverCulture;
     private javax.swing.JTextField messageJTextField;
     private javax.swing.JTextField others;
+    private javax.swing.JCheckBox reactive;
     private javax.swing.JButton requestTestJButton;
-    private javax.swing.JCheckBox vitamins;
+    private javax.swing.JCheckBox survivalcapability;
+    private javax.swing.JCheckBox wbcCount;
     // End of variables declaration//GEN-END:variables
 }
