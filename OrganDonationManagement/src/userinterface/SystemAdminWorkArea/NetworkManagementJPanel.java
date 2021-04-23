@@ -112,6 +112,7 @@ public class NetworkManagementJPanel extends javax.swing.JPanel {
         btnAddCity.setBackground(new java.awt.Color(0, 51, 102));
         btnAddCity.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnAddCity.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         btnAddCity.setText("Add City");
         btnAddCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +125,7 @@ public class NetworkManagementJPanel extends javax.swing.JPanel {
         backJButton.setBackground(new java.awt.Color(0, 51, 102));
         backJButton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back3.png"))); // NOI18N
         backJButton.setText("Previous");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +149,7 @@ public class NetworkManagementJPanel extends javax.swing.JPanel {
         btnDeleteCity.setBackground(new java.awt.Color(0, 51, 102));
         btnDeleteCity.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnDeleteCity.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         btnDeleteCity.setText("Delete City");
         btnDeleteCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +206,7 @@ public class NetworkManagementJPanel extends javax.swing.JPanel {
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(32, 32, 32)
                                     .addComponent(btnAddCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(702, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +237,7 @@ public class NetworkManagementJPanel extends javax.swing.JPanel {
                                 .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnDeleteCity, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 569, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 563, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(9, 9, 9))
         );

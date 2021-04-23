@@ -38,88 +38,70 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         btn_manageEmployees = new javax.swing.JButton();
         btn_patients = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADMIN DASHBOARD");
+        add(jLabel1);
+        jLabel1.setBounds(20, 20, 1640, 29);
 
         btn_manageUsers.setBackground(new java.awt.Color(0, 51, 102));
         btn_manageUsers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btn_manageUsers.setForeground(new java.awt.Color(255, 255, 255));
+        btn_manageUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AdminDashboardManageUserAccount1.png"))); // NOI18N
         btn_manageUsers.setText("Manage User Accounts");
         btn_manageUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_manageUsersActionPerformed(evt);
             }
         });
+        add(btn_manageUsers);
+        btn_manageUsers.setBounds(477, 189, 731, 33);
 
         manageOrganizationJButton.setBackground(new java.awt.Color(0, 51, 102));
         manageOrganizationJButton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
+        manageOrganizationJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AdminDashboardManageOraganisation.png"))); // NOI18N
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
+        add(manageOrganizationJButton);
+        manageOrganizationJButton.setBounds(477, 103, 731, 33);
 
         btn_manageEmployees.setBackground(new java.awt.Color(0, 51, 102));
         btn_manageEmployees.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btn_manageEmployees.setForeground(new java.awt.Color(255, 255, 255));
+        btn_manageEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AdminDashboardManageEmployees.png"))); // NOI18N
         btn_manageEmployees.setText("Manage Employees");
         btn_manageEmployees.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_manageEmployeesActionPerformed(evt);
             }
         });
+        add(btn_manageEmployees);
+        btn_manageEmployees.setBounds(477, 146, 731, 33);
 
+        btn_patients.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AdminDashboardManagePatient.png"))); // NOI18N
         btn_patients.setText("Manage Patients");
         btn_patients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_patientsActionPerformed(evt);
             }
         });
+        add(btn_patients);
+        btn_patients.setBounds(477, 232, 731, 41);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1640, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 1650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btn_manageUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 1650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn_manageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 1650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(535, 535, 535)
-                        .addComponent(btn_patients, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(manageOrganizationJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_manageEmployees)
-                .addGap(12, 12, 12)
-                .addComponent(btn_manageUsers)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_patients)
-                .addContainerGap())
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backgroundImage.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 1620, 930);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_manageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_manageUsersActionPerformed
@@ -158,6 +140,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btn_manageUsers;
     private javax.swing.JButton btn_patients;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageOrganizationJButton;
     // End of variables declaration//GEN-END:variables
     
