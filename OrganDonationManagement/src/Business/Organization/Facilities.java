@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author mruna
+ * @author mrunal
  */
 public class Facilities extends Organization{
     

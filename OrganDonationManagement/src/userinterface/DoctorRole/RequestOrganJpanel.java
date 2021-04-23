@@ -5,12 +5,14 @@
  */
 package userinterface.DoctorRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Medical;
 import Business.Organization.Organization;
 import Business.Person.Patient;
+import Business.Ranking;
 import Business.UserAccount.UserAccount;
 import Business.Waitlist.Wait;
 import java.awt.CardLayout;
@@ -203,11 +205,17 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
             }
         }
         
-        
-        
-        
-        Wait w=new Wait(p,cb_age.getSelectedItem().toString(),cb_ped.getSelectedItem().toString(),cb_survival.getSelectedItem().toString(),cb_urgency.getSelectedItem().toString(),cb_reqOrgan.getSelectedItem().toString(),score);
+        Wait w=new Wait(p,cb_age.getSelectedItem().toString(),cb_ped.getSelectedItem().toString(),cb_survival.getSelectedItem().toString(),cb_urgency.getSelectedItem().toString(),cb_reqOrgan.getSelectedItem().toString(),score,0);
         ecoSystem.addWaitlist(w);
+        
+        Ranking r=new Ranking(ecoSystem);
+        r.rank();
+        for(Wait wait: ecoSystem.getWaitList()){
+            int rank=r.findrank(""+wait.getPatient().getId(), wait.getWaitlist());
+            wait.setRank(rank);
+        }
+        
+        
         
         //JPanel userProcessContainer, UserAccount account, Medical organization, Enterprise enterprise, EcoSystem ecosystem, Network network
         DoctorWorkAreaJPanel rlt=new DoctorWorkAreaJPanel(userProcessContainer, userAccount,(Medical) org,enterprise,ecoSystem,network);

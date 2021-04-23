@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mruna
+ * @author Mrunal <your.name at your.org>
  */
 public class TherapistWorkAreaJPanel extends javax.swing.JPanel {
 
