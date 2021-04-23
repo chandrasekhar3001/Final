@@ -11,13 +11,22 @@ import java.util.ArrayList;
 
 /**
  *
- * @author mrunal
+ * @author mruna
  */
 public class Facilities extends Organization{
     
     public Facilities(String name){
         super(name);
 
+    }
+    int counter;
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     @Override
