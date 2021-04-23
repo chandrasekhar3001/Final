@@ -6,7 +6,7 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
-//import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkQueue;
 import java.util.Date;
 
 /**
@@ -19,7 +19,7 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private Role role;
-    //private WorkQueue workQueue;
+    private WorkQueue workQueue;
     private String phNumber;
     private String Address;
     private String qualifications;
@@ -99,9 +99,9 @@ public class UserAccount {
         this.qualifications = qualifications;
     }
 
-    /*public UserAccount() {
+    public UserAccount() {
         workQueue = new WorkQueue();
-    }*/
+    }
     
     
     
@@ -137,9 +137,13 @@ public class UserAccount {
         return employee;
     }
 
-    /*public WorkQueue getWorkQueue() {
+    public WorkQueue getWorkQueue() {
         return workQueue;
-    }*/
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
 
     
     

@@ -23,16 +23,16 @@ public class DonorDirectory {
         organs.add("Lungs");
         organs.add("Kidney");
         organs.add("Liver");
-        createDonor("Krishna", 20, "M", "O postive", "959595955", "15C corenila", "Gopi Krishna", "gopimanchu@gmail.com", "Sakshi", "8572727337", true, organs);
     }
 
     public ArrayList<Donor> getDonorList() {
         return donorList;
     }
     
-    public Donor createDonor(String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
+    public Donor createDonor(int id,String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
                 String emailAdd, String emergencyPOC, String emergencyPOC_Num, boolean isOrganAvaiNow, List<String >organs){
         Donor donor = new Donor();
+        donor.setDonorId(id);
         donor.setName(name);
         donor.setAge(age);
         donor.setGender(sex);

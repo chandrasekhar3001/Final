@@ -14,6 +14,7 @@ import java.util.List;
  * @author mruna
  */
 public class Donor {
+    int donorId;
     private String name;
     private int age;
     private String gender;
@@ -68,9 +69,18 @@ public class Donor {
         return pocContact;
     }
 
+    
+    public int getDonorId() {
+        return donorId;
+    }
+
     /**
      * @param pocContact the pocContact to set
      */
+    public void setDonorId(int donorId) {    
+        this.donorId = donorId;
+    }
+
     public void setPocContact(String pocContact) {
         this.pocContact = pocContact;
     }
