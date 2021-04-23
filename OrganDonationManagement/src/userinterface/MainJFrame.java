@@ -198,7 +198,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 255));
         jLabel1.setForeground(new java.awt.Color(51, 255, 102));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enterprise_admin.png"))); // NOI18N
         jPanel2.add(jLabel1);
         jLabel1.setBounds(620, 210, 350, 410);
 
