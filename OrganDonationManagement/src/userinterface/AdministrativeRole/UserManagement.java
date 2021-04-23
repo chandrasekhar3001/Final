@@ -154,6 +154,7 @@ public class UserManagement extends javax.swing.JPanel {
         btnCreate.setBackground(new java.awt.Color(0, 51, 102));
         btnCreate.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnCreate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CreateEmployee.png"))); // NOI18N
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

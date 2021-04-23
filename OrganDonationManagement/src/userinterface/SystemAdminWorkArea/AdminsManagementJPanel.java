@@ -161,6 +161,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         btnCreate.setBackground(new java.awt.Color(0, 51, 102));
         btnCreate.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnCreate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CreateEmployee.png"))); // NOI18N
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +191,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         backJButton.setBackground(new java.awt.Color(0, 51, 102));
         backJButton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back3.png"))); // NOI18N
         backJButton.setText("Previous");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +209,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         updateJbutton.setBackground(new java.awt.Color(0, 51, 102));
         updateJbutton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         updateJbutton.setForeground(new java.awt.Color(255, 255, 255));
+        updateJbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update.png"))); // NOI18N
         updateJbutton.setText("Update");
         updateJbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +220,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         deletejButton.setBackground(new java.awt.Color(0, 51, 102));
         deletejButton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         deletejButton.setForeground(new java.awt.Color(255, 255, 255));
+        deletejButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         deletejButton.setText("Delete");
         deletejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +231,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         btnSave.setBackground(new java.awt.Color(0, 51, 102));
         btnSave.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/saveChanges.png"))); // NOI18N
         btnSave.setText("Save Changes");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,7 +317,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
                         .addGap(67, 67, 67))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(updateJbutton)

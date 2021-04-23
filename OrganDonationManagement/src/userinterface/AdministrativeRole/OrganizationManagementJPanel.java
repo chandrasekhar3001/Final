@@ -139,6 +139,7 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
         btnAddOrganization.setBackground(new java.awt.Color(0, 51, 102));
         btnAddOrganization.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnAddOrganization.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         btnAddOrganization.setText("Add Organization");
         btnAddOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +157,7 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
         btnBack.setBackground(new java.awt.Color(0, 51, 102));
         btnBack.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back3.png"))); // NOI18N
         btnBack.setText("Previous");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,17 +197,16 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
                                             .addComponent(txtCurrentOrganizations))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAddOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(btnAddOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 163, Short.MAX_VALUE)
                                     .addComponent(cmbxOrganizationType, 0, 163, Short.MAX_VALUE)
                                     .addComponent(txtOrganizationName)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(btnBack)))
+                                .addComponent(btnBack))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 650, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -229,7 +230,6 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addComponent(btnAddOrganization)
                         .addGap(19, 19, 19)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)

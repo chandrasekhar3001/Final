@@ -86,6 +86,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btn_manageNetwork.setBackground(new java.awt.Color(204, 204, 204));
         btn_manageNetwork.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btn_manageNetwork.setForeground(new java.awt.Color(255, 255, 255));
+        btn_manageNetwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/network.png"))); // NOI18N
         btn_manageNetwork.setText("Manage Network");
         btn_manageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +96,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btn_manageEnterprise.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btn_manageEnterprise.setForeground(new java.awt.Color(255, 255, 255));
+        btn_manageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enterprise.png"))); // NOI18N
         btn_manageEnterprise.setText("Manage Enterprise");
         btn_manageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +106,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btn_manageAdmins.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btn_manageAdmins.setForeground(new java.awt.Color(255, 255, 255));
+        btn_manageAdmins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enterprise_admin.png"))); // NOI18N
         btn_manageAdmins.setText("Manage Enterprise Admin");
         btn_manageAdmins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +142,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btn_manageEnterprise)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_manageAdmins)
-                .addContainerGap(798, Short.MAX_VALUE))
+                .addContainerGap(717, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel2);
