@@ -20,7 +20,7 @@ public class DiagnosticsWorkRequest extends WorkRequest{
     private ArrayList <String> tests = new ArrayList<String>();
     private String file_name;
     private Patient patient;
-    //Blff Typing, Survival, Reactive antibodies// random//comments
+    //Blood Typing, Survival, Reactive antibodies// random//comments
     private ArrayList<String> testData;
 
 

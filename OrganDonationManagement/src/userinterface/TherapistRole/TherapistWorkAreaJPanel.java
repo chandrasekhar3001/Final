@@ -10,7 +10,11 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Therapists;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.TherapistWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +25,23 @@ public class TherapistWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TherapistWorkAreaJPanel
      */
+    JPanel userProcessContainer;
+    UserAccount account;
+    Therapists organization;
+    Enterprise enterprise;
+    EcoSystem ecosystem;
+    Network network;
+    
     public TherapistWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Therapists organization, Enterprise enterprise, EcoSystem ecosystem, Network network) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.organization=organization;
+        this.enterprise=enterprise;
+        this.ecosystem=ecosystem;
+        this.network=network;
+        initTable();
+        JOptionPane.showMessageDialog(null, organization.getName());
     }
 
     /**
@@ -34,30 +53,121 @@ public class TherapistWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_patients = new javax.swing.JTable();
+        btn_Assign = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
+        tbl_patients.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Patient ID", "Patient Name", "Doctor name", "Request Date", "Therapist", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl_patients);
+
+        btn_Assign.setText("Assign to me");
+        btn_Assign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AssignActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jLabel1)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(492, 492, 492)
+                        .addComponent(btn_Assign))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(129, 129, 129)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(btn_Assign)
+                .addGap(168, 168, 168))
         );
     }// </editor-fold>//GEN-END:initComponents
+    public void initTable(){
+        DefaultTableModel model = (DefaultTableModel) tbl_patients.getModel();
+        model.setRowCount(0);
+        for (WorkRequest w:organization.getWorkQueue().getWorkRequestList()) {
+                Object[] row = new Object[6];
+                row[0] = ((TherapistWorkRequest)w).getPatient().getId();
+                row[1] = ((TherapistWorkRequest)w).getPatient().getName();
+                row[2] = w.getSender();
+                row[3] = w.getRequestDate();
+                row[4] = w.getReceiver();
+                row[5] = w.getStatus();
+                model.addRow(row);   
+        }                
+    }
+    
+    
+    private void btn_AssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AssignActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tbl_patients.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please select the request to assign");
+            return;
+        }
+
+        WorkRequest request = null;
+        for(WorkRequest w:organization.getWorkQueue().getWorkRequestList()){
+            if(Integer.parseInt(""+tbl_patients.getValueAt(tbl_patients.getSelectedRow(), 0))==((TherapistWorkRequest)w).getPatient().getId()){
+             request=w;
+             break;
+            }
+        }
+
+        if(request.getStatus().equalsIgnoreCase("Assigned")){
+            JOptionPane.showMessageDialog(null,"This patient is assigned");
+        }
+        request.setStatus("Assigned");
+        request.setReceiver(account);
+        initTable();
+        
+    }//GEN-LAST:event_btn_AssignActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btn_Assign;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbl_patients;
     // End of variables declaration//GEN-END:variables
 }

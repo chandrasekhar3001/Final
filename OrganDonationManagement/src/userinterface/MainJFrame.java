@@ -11,10 +11,14 @@ import Business.Enterprise.*;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Person.DonorDirectory;
+import Business.Person.Patient;
 import Business.Person.PatientDirectory;
 import Business.UserAccount.UserAccount;
+import Business.Waitlist.Wait;
+import Business.WorkQueue.OrganProcureWorkRequest;
 import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import userinterface.DonorRole.DonorWorkAreaJPanel;
 
@@ -35,23 +39,61 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
-        //system.setPatientId(1001);
-        //system.setEmployeeId(20211001);
-        //system.setDonorId(50011001);
-        //system.setPatientDirectory(new PatientDirectory());
-       //system = new EnterpriseDirectory();
-        //PatientDirectory pd=new PatientDirectory();
-        //system.setWorkQueue(new WorkQueue());
-        //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).setPatientDirectory(new PatientDirectory());
+        
+        if(system.getEmployeeId()==0){
+            system.setEmployeeId(20211001);
+        }
+        if(system.getDonorId()==0){
+            system.setDonorId(9001);
+        }
+        if(system.getPatientId()==0){
+            system.setPatientId(1001);
+        }
+        if(system.getWaitList()==null){
+            system.setWaitList(new ArrayList<>());
+        }
+        if(system.getWorkQueue()==null){
+            system.setWorkQueue(new WorkQueue());
+        }
 
+        //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).setPatientDirectory(new PatientDirectory());
         /*System.out.println(system.getPatientId());
         System.out.println(system.getEmployeeId());
         System.out.println(system.getDonorId());
         System.out.println(system.getPatientDirectory().getPatientList());
         */
-        
+        //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).setWorkQueue(new WorkQueue());
        //System.out.println(system.getNetworkList());
-       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getWorkQueue().getWorkRequestList());
+       /*System.out.println(system.getWaitList().get(1).getPatient().getName());
+       System.out.println(system.getWaitList().get(1).getUrgency());
+       System.out.println(system.getWaitList().get(1).getWaitlist());
+       System.out.println(system.getWaitList().get(1).getPatient().getDoctor());
+       
+       
+       
+       
+       System.out.println(system.getDonorDirectory().size());*/
+        /*System.out.println("*******************************************************");
+       for(Network n: system.getNetworkList()){
+            for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
+                System.out.println(e.getEnterpriseType().getValue());
+                if(e.getEnterpriseType().getValue().equalsIgnoreCase("Organ Bank")){
+                    //System.out.println(e.getWorkQueue().getWorkRequestList().get(0).getSender());
+                    
+                    //System.out.println("YAY "+e.getWorkQueue().getWorkRequestList().get(0).getClass().getCanonicalName());
+                    //System.out.println(((OrganProcureWorkRequest)e.getWorkQueue().getWorkRequestList().get(0)).getOrganList().get(0));    
+                }
+                
+            }
+        }*/
+       //System.out.println("**********************************************************88");
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList());//.get(2).getWorkQueue().getWorkRequestList().get(0));
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(2).getWorkQueue().getWorkRequestList().get(0).getReceiver());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(2).getWorkQueue().getWorkRequestList().get(0).getMessage());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(2).getWorkQueue().getWorkRequestList().get(0).getStatus());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(2).getWorkQueue().getWorkRequestList().get(0).getRequestDate());
+       //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().getOrganizationList().get(2).getWorkQueue().getWorkRequestList().get(0).getResolveDate());
+       
        //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory());
        //System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).getPatientDirectory().getPatientList().get(0).getDoctor());
        
@@ -269,11 +311,12 @@ public class MainJFrame extends javax.swing.JFrame {
                 for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
                     System.out.println(enterprise);
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    inNetwork=network;
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                           if(userAccount!=null){
+                           if(userAccount!=null){ 
                                inNetwork=network;
                                inEnterprise=enterprise;
                                inOrganization=organization;
@@ -301,8 +344,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            JOptionPane.showMessageDialog(null, userAccount.getRole());
-            JOptionPane.showMessageDialog(null, system.getPatientId());
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, inNetwork, donorDirectory));
             layout.next(container);
         }

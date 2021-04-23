@@ -105,7 +105,6 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
         txtheading = new javax.swing.JLabel();
         textEnterprise = new javax.swing.JLabel();
         updateJbutton = new javax.swing.JButton();
-        deletejButton = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -214,16 +213,6 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
             }
         });
 
-        deletejButton.setBackground(new java.awt.Color(0, 51, 102));
-        deletejButton.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        deletejButton.setForeground(new java.awt.Color(255, 255, 255));
-        deletejButton.setText("Delete");
-        deletejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletejButtonActionPerformed(evt);
-            }
-        });
-
         btnSave.setBackground(new java.awt.Color(0, 51, 102));
         btnSave.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,10 +232,7 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateJbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtheading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,15 +251,17 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pwdJPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boxenterpriseJCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 241, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(btnCreate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateJbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pwdJPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(boxenterpriseJCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 241, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(btnCreate)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))))
                         .addGap(577, 577, 577)))
                 .addContainerGap())
         );
@@ -289,6 +277,11 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
                     .addComponent(textEnterprise))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(backJButton)
+                        .addGap(557, 557, 557))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -309,18 +302,9 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreate)
                             .addComponent(btnSave))
-                        .addGap(67, 67, 67))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(30, 30, 30)
                         .addComponent(updateJbutton)
-                        .addComponent(deletejButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(backJButton)))
-                .addGap(557, 557, 557))
+                        .addGap(606, 606, 606))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -421,26 +405,6 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_updateJbuttonActionPerformed
 
-    private void deletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletejButtonActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = enterpriselistJTable.getSelectedRow();
-
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "please select an enterprise admin to Delete");
-            return;
-        }
-        UserAccount user = (UserAccount) enterpriselistJTable.getValueAt(selectedRow, 2);
-           for(Network n: system.getNetworkList()){
-            for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList()){
-                e.getUserAccountDirectory().getUserAccountList().remove(user);
-                
-            }
-        }
-        JOptionPane.showMessageDialog(null, "User Account Deleted");
-        populateTable();
-
-    }//GEN-LAST:event_deletejButtonActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         int selectedRow = enterpriselistJTable.getSelectedRow();
@@ -463,7 +427,6 @@ public class AdminsManagementJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox boxnetworkJComboBox;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton deletejButton;
     private javax.swing.JTable enterpriselistJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

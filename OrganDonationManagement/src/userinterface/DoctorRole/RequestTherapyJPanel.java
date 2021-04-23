@@ -174,6 +174,7 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
 
     private void cb_centersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_centersActionPerformed
         // TODO add your handling code here:
+        cb_therapy.removeAllItems();
         for(Network n: ecoSystem.getNetworkList()){
             if(cb_network.getSelectedItem().toString().equalsIgnoreCase(n.getName())){
                 for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
@@ -195,6 +196,8 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
 
     private void cb_networkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_networkActionPerformed
         // TODO add your handling code here:
+        cb_centers.removeAllItems();
+        cb_centers.addItem("--Select--");
         for(Network n: ecoSystem.getNetworkList()){
             if(cb_network.getSelectedItem().toString().equalsIgnoreCase(n.getName())){
                 for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){

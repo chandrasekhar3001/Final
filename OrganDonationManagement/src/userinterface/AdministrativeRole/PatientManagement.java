@@ -69,6 +69,7 @@ public class PatientManagement extends javax.swing.JPanel {
         btn_back = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         cb_gen = new javax.swing.JComboBox<>();
+        patCount = new javax.swing.JLabel();
 
         jTextField4.setText("jTextField4");
 
@@ -151,8 +152,10 @@ public class PatientManagement extends javax.swing.JPanel {
                                     .addComponent(cb_gen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(13, 13, 13))
                             .addComponent(btn_save, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_back, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                            .addComponent(btn_back, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addComponent(patCount, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +189,8 @@ public class PatientManagement extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cb_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patCount))
                 .addGap(38, 38, 38)
                 .addComponent(btn_save)
                 .addGap(30, 30, 30)
@@ -203,6 +207,22 @@ public class PatientManagement extends javax.swing.JPanel {
             }
         }
     }
+    
+    public void countPatients(String doc){
+        int counter=0;
+        for(Organization org: organizationDirectory.getOrganizationList()){
+            if(org.getType().getValue().equalsIgnoreCase("medical")){
+                for(Patient p: org.getPatientDirectory().getPatientList()){
+                    if(p.isAlive()&&p.getDoctor().equalsIgnoreCase(doc)){
+                        counter++;
+                    }
+                }
+            }
+        }
+        patCount.setText(""+counter);
+    
+    }
+    
     
     
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
@@ -265,6 +285,12 @@ public class PatientManagement extends javax.swing.JPanel {
 
     private void cb_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_doctorActionPerformed
         // TODO add your handling code here:
+        if(cb_doctor.getSelectedIndex()>0){
+            String doc=cb_doctor.getSelectedItem().toString();
+            countPatients(doc);
+        }
+        
+        
     }//GEN-LAST:event_cb_doctorActionPerformed
 
     private void cb_deptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_deptActionPerformed
@@ -313,6 +339,7 @@ public class PatientManagement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel patCount;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_patId;

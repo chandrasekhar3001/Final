@@ -8,6 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Facilities;
 import Business.Organization.Medical;
 import Business.Organization.OrganManagement;
 import Business.Organization.Organization;
@@ -24,6 +25,6 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 public class ProcurementTeam extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network, DonorDirectory donorDirectory) {
-        return new ProcurementTeamJPanel(userProcessContainer,account, (OrganManagement)organization, enterprise,business, network);
+        return new ProcurementTeamJPanel(userProcessContainer,account, (Facilities)organization, enterprise,business, network);
     }
 }

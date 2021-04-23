@@ -6,6 +6,7 @@ package userinterface.DoctorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
 import Business.Network.Network;
 import Business.Organization.Diagnostics;
 import Business.Organization.Medical;
@@ -30,17 +31,23 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private Patient patientAccount;
+    private Medical organization;
+    EcoSystem ecosystem;
+    Network network;
     //private DiagnosticsWorkRequest testRequest;
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, Patient patientAccount, Enterprise enterprise) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, Patient patientAccount, Enterprise enterprise,Medical organization, EcoSystem ecosystem, Network network) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
         this.patientAccount=patientAccount;
+        this.organization=organization;
+        this.ecosystem=ecosystem;
+        this.network=network;
          requestTestJButton.setEnabled(true);
     }
 
@@ -57,17 +64,21 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         requestTestJButton = new javax.swing.JButton();
         messageJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_addtest1 = new javax.swing.JLabel();
         reactive = new javax.swing.JCheckBox();
         bloodtyping = new javax.swing.JCheckBox();
         survivalcapability = new javax.swing.JCheckBox();
-        others = new javax.swing.JTextField();
+        txt_addtest1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         wbcCount = new javax.swing.JCheckBox();
         liverCulture = new javax.swing.JCheckBox();
         kidneyCulture = new javax.swing.JCheckBox();
+        lbl_addtest2 = new javax.swing.JLabel();
+        txt_addTest2 = new javax.swing.JTextField();
+        lbl_addTest3 = new javax.swing.JLabel();
+        txt_addtest3 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,8 +108,8 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jLabel2.setText("Specific test");
+        lbl_addtest1.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        lbl_addtest1.setText("Additional test");
 
         reactive.setBackground(new java.awt.Color(255, 255, 255));
         reactive.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
@@ -117,9 +128,9 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         survivalcapability.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         survivalcapability.setText("Survival Capability");
 
-        others.addActionListener(new java.awt.event.ActionListener() {
+        txt_addtest1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                othersActionPerformed(evt);
+                txt_addtest1ActionPerformed(evt);
             }
         });
 
@@ -150,6 +161,29 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         kidneyCulture.setBackground(new java.awt.Color(255, 255, 255));
         kidneyCulture.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         kidneyCulture.setText("Kidney Culture");
+        kidneyCulture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kidneyCultureActionPerformed(evt);
+            }
+        });
+
+        lbl_addtest2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        lbl_addtest2.setText("Additional test");
+
+        txt_addTest2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_addTest2ActionPerformed(evt);
+            }
+        });
+
+        lbl_addTest3.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        lbl_addTest3.setText("Additional test");
+
+        txt_addtest3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_addtest3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -164,28 +198,36 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(requestTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bloodtyping)
-                    .addComponent(reactive, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(survivalcapability, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wbcCount)
-                    .addComponent(liverCulture)
-                    .addComponent(kidneyCulture)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGap(80, 80, 80)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbl_addTest3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_addtest3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_addtest2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_addTest2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_addtest1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_addtest1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bloodtyping)
+                            .addComponent(reactive, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(survivalcapability, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(wbcCount)
+                            .addComponent(liverCulture)
+                            .addComponent(kidneyCulture)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,13 +246,21 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 .addComponent(wbcCount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(liverCulture)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(kidneyCulture)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(16, 16, 16)
+                    .addComponent(txt_addtest1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_addtest1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_addTest2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_addtest2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_addtest3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_addTest3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -266,25 +316,43 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             f=1;
             request.getTests().add("Kidney Culture");
         }
-        if(others.getText().isEmpty()){
-            
-        }else{
+        if(!txt_addtest1.getText().isEmpty()){
             f=1;
-            request.getTests().add(others.getText());
+            request.getTests().add(txt_addtest1.getText());
         }
+        if(!txt_addTest2.getText().isEmpty()){
+            f=1;
+            request.getTests().add(txt_addTest2.getText());
+        }if(!txt_addtest3.getText().isEmpty()){
+            f=1;
+            request.getTests().add(txt_addtest3.getText());
+        }
+        
         request.setSender(userAccount);
         request.setStatus("Sent");
         
         Organization org = null;
         //System.out.println(enterprise.getOrganizationDirectory().getOrganizationList()+"yay");
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+        Enterprise e=null;
+        
+        for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+            if(ent instanceof HospitalEnterprise&&ent.getName().equalsIgnoreCase(enterprise.getName())){
+                e=ent;
+                ent.getWorkQueue().getWorkRequestList().add(request);
+                userAccount.getWorkQueue().getWorkRequestList().add(request);
+            }
+        }
+        
+        
+        /*for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
             if (organization instanceof Diagnostics){
                 org = organization;
                 System.out.println(org+" and work request"+org.getWorkQueue().getWorkRequestList());
                 org.getWorkQueue().getWorkRequestList().add(request);
                 userAccount.getWorkQueue().getWorkRequestList().add(request);
+                break;
             }
-        }
+        }*/
         /*JOptionPane.showMessageDialog(null, org.getName());
         if (org!=null){
             
@@ -304,19 +372,25 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         
-        userProcessContainer.remove(this);
+        /*userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+        //dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        layout.previous(userProcessContainer);*/
+        
+        
+        DoctorWorkAreaJPanel sa=new DoctorWorkAreaJPanel(userProcessContainer,userAccount,organization,enterprise,ecosystem,network);
+        userProcessContainer.add("Customer Adding",sa);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void othersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_othersActionPerformed
+    private void txt_addtest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_addtest1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_othersActionPerformed
+    }//GEN-LAST:event_txt_addtest1ActionPerformed
 
     private void reactiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reactiveActionPerformed
         // TODO add your handling code here:
@@ -330,20 +404,36 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_wbcCountActionPerformed
 
+    private void kidneyCultureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kidneyCultureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kidneyCultureActionPerformed
+
+    private void txt_addTest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_addTest2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_addTest2ActionPerformed
+
+    private void txt_addtest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_addtest3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_addtest3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JCheckBox bloodtyping;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JCheckBox kidneyCulture;
+    private javax.swing.JLabel lbl_addTest3;
+    private javax.swing.JLabel lbl_addtest1;
+    private javax.swing.JLabel lbl_addtest2;
     private javax.swing.JCheckBox liverCulture;
     private javax.swing.JTextField messageJTextField;
-    private javax.swing.JTextField others;
     private javax.swing.JCheckBox reactive;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JCheckBox survivalcapability;
+    private javax.swing.JTextField txt_addTest2;
+    private javax.swing.JTextField txt_addtest1;
+    private javax.swing.JTextField txt_addtest3;
     private javax.swing.JCheckBox wbcCount;
     // End of variables declaration//GEN-END:variables
 }

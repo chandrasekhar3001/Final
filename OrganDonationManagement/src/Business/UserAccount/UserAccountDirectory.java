@@ -48,7 +48,7 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
-    public UserAccount createUserAccount(String username, String password,String phNum,String address,String qalString, String sex, boolean availability, int age, String file_path, Employee employee, Role role,boolean organavail){
+    public UserAccount createUserAccount(String username, String password,String phNum,String address,String qalString, String sex, boolean availability, int age, Employee employee, Role role,boolean organavail){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
@@ -60,7 +60,6 @@ public class UserAccountDirectory {
         userAccount.setSex(sex);
         userAccount.setIsAvailable(availability);
         userAccount.setQualifications(qalString);
-        userAccount.setProfile(file_path);
         userAccount.setIsAvailableforOrgan(organavail);
         //userAccount.setDate(date);
         userAccountList.add(userAccount);

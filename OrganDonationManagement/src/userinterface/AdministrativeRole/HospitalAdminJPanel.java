@@ -13,14 +13,14 @@ import javax.swing.JPanel;
  *
  * @author  saras
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class HospitalAdminJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem ecoSystem;
     Network network;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem ecoSystem,Network network) {
+    public HospitalAdminJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem ecoSystem,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -42,7 +42,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         btn_manageEmployees = new javax.swing.JButton();
         btn_patients = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -87,13 +86,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("View Requests");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,9 +105,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btn_manageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 1650, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addComponent(jButton1)
-                        .addGap(219, 219, 219)
+                        .addGap(565, 565, 565)
                         .addComponent(btn_patients, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
@@ -131,9 +121,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(btn_manageUsers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_patients)
-                    .addComponent(jButton1))
+                .addComponent(btn_patients)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -167,22 +155,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btn_patientsActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, network.getName());
-        OrganManagement pm = new OrganManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise,ecoSystem,network);
-        userProcessContainer.add("manageOrgan", pm);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_manageEmployees;
     private javax.swing.JButton btn_manageUsers;
     private javax.swing.JButton btn_patients;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageOrganizationJButton;
     // End of variables declaration//GEN-END:variables

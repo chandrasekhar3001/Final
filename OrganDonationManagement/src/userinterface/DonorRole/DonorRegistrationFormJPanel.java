@@ -98,7 +98,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -113,8 +112,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         txtSignature = new javax.swing.JTextField();
         radMale = new javax.swing.JRadioButton();
         radFemale = new javax.swing.JRadioButton();
-        radOrganAvailYes = new javax.swing.JRadioButton();
-        radOrganAvailNo = new javax.swing.JRadioButton();
         btnBack = new javax.swing.JButton();
         organJComboBox = new javax.swing.JComboBox();
         lblOrgan1 = new javax.swing.JLabel();
@@ -160,10 +157,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Organ to donate:");
-
-        jLabel10.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel10.setText("Is organ available now:");
 
         jLabel11.setFont(new java.awt.Font("Cambria", 3, 14)); // NOI18N
         jLabel11.setText("Point of contact in emergency:");
@@ -225,20 +218,9 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
             }
         });
 
-        radOrganAvailYes.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup2.add(radOrganAvailYes);
-        radOrganAvailYes.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        radOrganAvailYes.setText("Yes");
-
-        radOrganAvailNo.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup2.add(radOrganAvailNo);
-        radOrganAvailNo.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        radOrganAvailNo.setText("No");
-
         btnBack.setBackground(new java.awt.Color(0, 51, 102));
         btnBack.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/Knob-Left-icon.png"))); // NOI18N
         btnBack.setText("Previous");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +253,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         btnRegister1.setBackground(new java.awt.Color(0, 51, 102));
         btnRegister1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         btnRegister1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/Knob-Add-icon.png"))); // NOI18N
         btnRegister1.setText("Register");
         btnRegister1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +278,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(420, 420, 420)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
@@ -329,10 +309,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                                     .addComponent(bloodGroupJComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtContactDonor, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radOrganAvailYes)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(radOrganAvailNo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtEmergencyName, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,12 +373,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                     .addComponent(lblOrgan1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(radOrganAvailYes)
-                            .addComponent(radOrganAvailNo))
-                        .addGap(18, 18, 18)
+                        .addGap(67, 67, 67)
                         .addComponent(jLabel11)
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -554,12 +525,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         
         
         
-        boolean isOrganAvaiNow = false;
-        if (radOrganAvailYes.isSelected()) {
-            isOrganAvaiNow = true;
-        } else if (radOrganAvailNo.isSelected()) {
-            isOrganAvaiNow = false;
-        }
+
 
         if (isFirstnameValid(name)) {
             f++;
@@ -629,7 +595,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
             return;
         }
 
-        Donor d = ecosystem.createDonor(name, age, sex, bloodGroup, contactNumber, address, sign, emailAdd, emergencyPOC, emergencyPOC_Num, isOrganAvaiNow, organList);
+        Donor d = ecosystem.createDonor(name, age, sex, bloodGroup, contactNumber, address, sign, emailAdd, emergencyPOC, emergencyPOC_Num, organList);
         //ecosystem.getDonorDirectory().add(d);
         //JOptionPane.showMessageDialog(null, "Thank you for registering with us!!");
         dB4OUtil.storeSystem(ecosystem);
@@ -705,7 +671,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -723,8 +688,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox organJComboBox;
     private javax.swing.JRadioButton radFemale;
     private javax.swing.JRadioButton radMale;
-    private javax.swing.JRadioButton radOrganAvailNo;
-    private javax.swing.JRadioButton radOrganAvailYes;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtCity;

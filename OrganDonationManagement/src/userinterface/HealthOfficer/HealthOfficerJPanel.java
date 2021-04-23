@@ -7,22 +7,47 @@ package userinterface.HealthOfficer;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
+import Business.Organization.AwarnessCampaign;
 import Business.Organization.PoliciesAndFinance;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.EventWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mrunal <your.name at your.org>
+ * @author saras 
  */
 public class HealthOfficerJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateNGOJPanel
      */
-    public HealthOfficerJPanel(JPanel userProcessContainer, UserAccount account, PoliciesAndFinance policiesAndFinance, Enterprise enterprise, EcoSystem business, Network network) {
+    private JPanel userProcessContainer;
+    private AwarnessCampaign awarnesscamp;
+    private PoliciesAndFinance organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EnterpriseDirectory enterpriseDirectory;
+    private EcoSystem ecosystem;
+    public HealthOfficerJPanel(JPanel userProcessContainer, UserAccount account, PoliciesAndFinance organization, Enterprise enterprise, EcoSystem business, Network network) {
+       
         initComponents();
+          this.userProcessContainer = userProcessContainer;
+          this.userAccount=account;
+          this.organization = organization;
+          this.ecosystem = business;
+//          valueLabel.setText(enterprise.getName());
+          
+            //valueLabel.setText("Event Management");
+        //profileName.setText(userAccount.getUsername());
+        //quals.setText(userAccount.getQualifications());
+         // profilepic();
+          populateRequestTable();
     }
 
     /**
@@ -36,42 +61,48 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
 
         lblNGOtitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEvent = new javax.swing.JTable();
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
-        lblViewDonor = new javax.swing.JLabel();
         comDonor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        lblPublishPolicy = new javax.swing.JLabel();
         btnSelectFile = new javax.swing.JButton();
         lblFilePath = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        lblNGOtitle.setText("FUNDING REQUEST");
+        lblNGOtitle.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        lblNGOtitle.setText("Funding Requests for Events");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEvent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "NGO", "Event", "Money", "STATUS"
+                "Name", "Venue", "Date", "Timel", "Status", "Amount", "Comments"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblEvent);
 
         btnAccept.setText("ACCEPT");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnDecline.setText("DECLINE");
         btnDecline.addActionListener(new java.awt.event.ActionListener() {
@@ -79,8 +110,6 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 btnDeclineActionPerformed(evt);
             }
         });
-
-        lblViewDonor.setText("View Donors");
 
         comDonor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select Network-- ", "Item 2", "Item 3", "Item 4" }));
 
@@ -105,51 +134,53 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        lblPublishPolicy.setText("Publish Policy");
-
-        btnSelectFile.setText("Select file");
+        btnSelectFile.setText("Select a file");
 
         lblFilePath.setText("file path");
 
-        btnSave.setText("Save");
+        btnSave.setText("Publish");
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel1.setText("List of Donors");
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel2.setText("Publish a Policy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(lblNGOtitle))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAccept)
-                            .addComponent(lblViewDonor))
+                        .addComponent(btnAccept)
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDecline)
-                            .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDecline))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(lblPublishPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSave)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSelectFile)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblFilePath)))))
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblFilePath))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblNGOtitle)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,26 +193,51 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAccept)
                     .addComponent(btnDecline))
-                .addGap(23, 23, 23)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblViewDonor)
-                    .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPublishPolicy)
+                    .addComponent(btnSave)
                     .addComponent(btnSelectFile)
                     .addComponent(lblFilePath))
-                .addGap(18, 18, 18)
-                .addComponent(btnSave)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblEvent.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please Select a row from table first", "Warining", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        System.out.println(tblEvent.getValueAt(selectedRow, 0));
+        EventWorkRequest ewr = (EventWorkRequest)tblEvent.getValueAt(selectedRow,0);
+        ewr.setStatus("Declined");
+        populateRequestTable();
     }//GEN-LAST:event_btnDeclineActionPerformed
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+         
+        
+        int selectedRow = tblEvent.getSelectedRow();
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null,"Please Select a row from table first", "Warining", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        System.out.println(tblEvent.getValueAt(selectedRow, 0));
+        EventWorkRequest ewr = (EventWorkRequest)tblEvent.getValueAt(selectedRow,0);
+        ewr.setStatus("Approved");
+        populateRequestTable();
+        
+    }//GEN-LAST:event_btnAcceptActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,13 +246,34 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSelectFile;
     private javax.swing.JComboBox<String> comDonor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFilePath;
     private javax.swing.JLabel lblNGOtitle;
-    private javax.swing.JLabel lblPublishPolicy;
-    private javax.swing.JLabel lblViewDonor;
+    private javax.swing.JTable tblEvent;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) tblEvent.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            //System.out.println("Work request List "+ request);
+            
+            if(request instanceof EventWorkRequest){
+            Object[] row = new Object[7];
+            row[0] = request;
+            row[1] = ((EventWorkRequest) request).getVenue();
+            row[2] = ((EventWorkRequest) request).getDate();
+            row[3] =((EventWorkRequest) request).getTime();
+            row[4] = ((EventWorkRequest) request).getAmount();
+            row[5] = ((EventWorkRequest) request).getComment();
+            row[6] = ((EventWorkRequest) request).getStatus();
+            
+            model.addRow(row);}
+        }
+    }
 }

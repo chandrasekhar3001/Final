@@ -12,9 +12,9 @@ import java.util.ArrayList;
  *
  * @author chandrasekhar
  */
-public class OrganProcureWorkRequest extends WorkRequest{
+public class TherapistWorkRequest extends WorkRequest{
+    
     Patient patient;
-    String team;
     private ArrayList<String> organList=new ArrayList<>();
 
     public ArrayList<String> getOrganList() {
@@ -32,18 +32,6 @@ public class OrganProcureWorkRequest extends WorkRequest{
     public Patient getPatient() {
         return patient;
     }
-
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
-
-    @Override
-    public String toString() {
-        return getPatient()+"";
-    }
+    
     
 }

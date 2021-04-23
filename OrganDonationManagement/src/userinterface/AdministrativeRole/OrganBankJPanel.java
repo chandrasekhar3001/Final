@@ -13,14 +13,14 @@ import javax.swing.JPanel;
  *
  * @author  saras
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class OrganBankJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem ecoSystem;
     Network network;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem ecoSystem,Network network) {
+    public OrganBankJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem ecoSystem,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -41,7 +41,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         btn_manageUsers = new javax.swing.JButton();
         manageOrganizationJButton = new javax.swing.JButton();
         btn_manageEmployees = new javax.swing.JButton();
-        btn_patients = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -80,13 +79,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btn_patients.setText("Manage Patients");
-        btn_patients.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_patientsActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("View Requests");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,9 +106,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(btn_manageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 1650, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(243, 243, 243)
-                        .addComponent(jButton1)
-                        .addGap(219, 219, 219)
-                        .addComponent(btn_patients, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1)))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
@@ -131,9 +121,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(btn_manageUsers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_patients)
-                    .addComponent(jButton1))
+                .addComponent(jButton1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -160,14 +148,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btn_manageEmployeesActionPerformed
 
-    private void btn_patientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_patientsActionPerformed
-        // TODO add your handling code here:
-        PatientManagement pm = new PatientManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise,ecoSystem);
-        userProcessContainer.add("manageOrganizationJPanel", pm);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btn_patientsActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, network.getName());
@@ -181,7 +161,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_manageEmployees;
     private javax.swing.JButton btn_manageUsers;
-    private javax.swing.JButton btn_patients;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageOrganizationJButton;

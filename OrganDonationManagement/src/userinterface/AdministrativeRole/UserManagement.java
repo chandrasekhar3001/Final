@@ -525,7 +525,7 @@ public class UserManagement extends javax.swing.JPanel {
         Employee employee = (Employee) cmbxEmployee.getSelectedItem();
         Role role = (Role) cmbxRole.getSelectedItem();
         //Date date = new Date();
-        organization.getUserAccountDirectory().createUserAccount(userName,password,phNum,address,qualification, sex, availability, newage, file_path, employee, role,organavail);
+        organization.getUserAccountDirectory().createUserAccount(userName,password,phNum,address,qualification, sex, availability, newage, employee, role,organavail);
         popname_id();
         popData();
         //employeeJComboBox.removeItem(employee);

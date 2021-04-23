@@ -10,8 +10,10 @@ import Business.Organization.Organization;
 import Business.Person.Donor;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.Waitlist.Wait;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,7 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private ArrayList<Donor> donorDirectory;
+    private ArrayList<Wait> waitList;
     int patientId;
     int employeeId;
     int donorId;
@@ -35,7 +38,7 @@ public class EcoSystem extends Organization{
     }
     
      public Donor createDonor(String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
-                String emailAdd, String emergencyPOC, String emergencyPOC_Num, boolean isOrganAvaiNow, List<String >organs){
+                String emailAdd, String emergencyPOC, String emergencyPOC_Num, List<String >organs){
         
         Donor donor = new Donor();
         donor.setName(name);
@@ -48,7 +51,6 @@ public class EcoSystem extends Organization{
         donor.setEmailAdd(emailAdd);
         donor.setPocName(emergencyPOC);
         donor.setPocContact(emergencyPOC_Num);
-        donor.setIsOrganAvaiNow(isOrganAvaiNow);
         donor.setOrgans(organs);
         donorDirectory.add(donor);
         return donor;
@@ -117,6 +119,18 @@ public class EcoSystem extends Organization{
         
     }
 
+    public ArrayList<Wait> getWaitList() {
+        return waitList;
+    }
+
+    public void setWaitList(ArrayList<Wait> waitList) {
+        this.waitList = waitList;
+    }
+    public void addWaitlist(Wait w){
+        waitList.add(w);
+        JOptionPane.showMessageDialog(null, "Patient is added to the national waitlist");
+    }
+    
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }
@@ -136,4 +150,7 @@ public class EcoSystem extends Organization{
         }
         return true;
     }
+    
+    
+    
 }
