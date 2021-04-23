@@ -9,7 +9,6 @@ import Business.Person.PatientDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
-//import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -48,7 +47,7 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-        //workQueue = new WorkQueue();
+        workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         patientDirectory=new PatientDirectory();

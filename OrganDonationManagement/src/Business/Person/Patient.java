@@ -135,6 +135,11 @@ public class Patient {
     public void setTestData(ArrayList<String> testData) {
         this.testData = testData;
     }
+
+    @Override
+    public String toString() {
+        return ""+id ;
+    }
     
     
     
