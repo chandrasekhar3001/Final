@@ -80,6 +80,7 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
         cb_survival = new javax.swing.JComboBox<>();
         cb_urgency = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jLabel1.setText("Requesting an organ for");
@@ -115,6 +116,13 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +144,10 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(44, 44, 44)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt_patId)
                                 .addComponent(txt_patname)
@@ -181,7 +192,9 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(cb_urgency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,6 +207,21 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
             return;
         }
         
+        
+        int dup=0;
+        for(Wait w: ecoSystem.getWaitList()){
+            if(w.getPatient().getId()==p.getId()&&w.getOrgan().equalsIgnoreCase(cb_reqOrgan.getSelectedItem().toString())){
+               dup++; 
+            }
+        }
+        
+        check=(dup==0);
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Patient is already in waitlist");
+            return;
+        }
+        
+
         //Patient patient, String age, String ped, String survival, String urgency, String organ, int waitlist
         int score=0;
         
@@ -224,6 +252,15 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DoctorWorkAreaJPanel rlt=new DoctorWorkAreaJPanel(userProcessContainer, userAccount,(Medical) org,enterprise,ecoSystem,network);
+        rlt.initwaitTable();
+        userProcessContainer.add("Lab test",rlt);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
     public int calculateScore(){
         int counter=0;
         int age=cb_age.getSelectedIndex();
@@ -279,6 +316,7 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cb_survival;
     private javax.swing.JComboBox<String> cb_urgency;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

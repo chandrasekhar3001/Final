@@ -36,9 +36,9 @@
                           <Component id="btnCreate" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="txtHours" min="-2" pref="71" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="12" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="txtMInutes" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnBack" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
@@ -183,6 +183,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>

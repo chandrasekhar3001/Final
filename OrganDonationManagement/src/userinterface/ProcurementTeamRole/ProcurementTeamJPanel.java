@@ -131,7 +131,8 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
         
         OrganProcureWorkRequest orgwr = (OrganProcureWorkRequest)tblworkRequest.getValueAt(selectedRow, 0);
         boolean check;
-        check=orgwr.getTeam().equalsIgnoreCase(account.getEmployee().getName());
+        check=orgwr.getTeam().equalsIgnoreCase(organization.getName());
+                
         if(!check){
             JOptionPane.showMessageDialog(null, "This task is assigned to other team");
             return;

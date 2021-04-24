@@ -114,7 +114,7 @@
                 <Column editable="true" title="Name" type="java.lang.Object"/>
                 <Column editable="false" title="Venue" type="java.lang.Object"/>
                 <Column editable="false" title="Date" type="java.lang.Object"/>
-                <Column editable="false" title="Timel" type="java.lang.Object"/>
+                <Column editable="false" title="Time" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
                 <Column editable="false" title="Amount" type="java.lang.Object"/>
                 <Column editable="false" title="Comments" type="java.lang.Object"/>
@@ -237,6 +237,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Select a file"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectFileActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblFilePath">
       <Properties>
@@ -247,6 +250,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Publish"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

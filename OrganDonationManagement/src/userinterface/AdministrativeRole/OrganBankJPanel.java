@@ -150,7 +150,6 @@ public class OrganBankJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, network.getName());
         OrganManagement pm = new OrganManagement(userProcessContainer, enterprise.getOrganizationDirectory(),enterprise,ecoSystem,network);
         userProcessContainer.add("manageOrgan", pm);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

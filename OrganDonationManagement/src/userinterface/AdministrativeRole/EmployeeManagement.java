@@ -35,12 +35,13 @@ public class EmployeeManagement extends javax.swing.JPanel {
         this.organizationDirectory = organizationDirectory;
         this.ecoSystem=ecoSystem;
         initOrganizationEmpComboBox();
+        initTable();
     }
     
     
     public void initOrganizationEmpComboBox(){
         cmbxOrganization.removeAllItems();
-        JOptionPane.showMessageDialog(null, organizationDirectory.getOrganizationList());
+        cmbxOrganization.addItem("--Select--");
         for (Organization organization : organizationDirectory.getOrganizationList()){
             cmbxOrganization.addItem(organization);
         }
@@ -53,12 +54,12 @@ public class EmployeeManagement extends javax.swing.JPanel {
 
         for(Organization or:organizationDirectory.getOrganizationList()){
             for (Employee employee : or.getEmployeeDirectory().getEmployeeList()){
-            Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
-            userList.add(employee.getName());
-            model.addRow(row);
-        }
+                Object[] row = new Object[2];
+                row[0] = employee.getId();
+                row[1] = employee.getName();
+                userList.add(employee.getName());
+                model.addRow(row);
+            }
         }
         
         
@@ -142,6 +143,11 @@ public class EmployeeManagement extends javax.swing.JPanel {
         jLabel2.setText("Name:");
 
         txtName.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         cmbxOrganization.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         cmbxOrganization.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -219,6 +225,12 @@ public class EmployeeManagement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        boolean check;
+        check=cmbxOrganization.getSelectedIndex()>0;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select an organisation");
+            return;
+        }
         
         Organization organization = (Organization) cmbxOrganization.getSelectedItem();
         String name = txtName.getText();
@@ -246,6 +258,10 @@ public class EmployeeManagement extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

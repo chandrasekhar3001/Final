@@ -68,6 +68,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     public void popOrganizationComboBox() {
         cmbxOrganization.removeAllItems();
+        //cmbxOrganization.addItem("--Select--");
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             cmbxOrganization.addItem(organization);
@@ -78,6 +79,7 @@ public class UserManagement extends javax.swing.JPanel {
     
     public void initEmployeeComboBox(Organization organization){
         cmbxEmployee.removeAllItems();
+        //cmbxEmployee.addItem("--Select--");
         
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             cmbxEmployee.addItem(employee);
@@ -86,6 +88,7 @@ public class UserManagement extends javax.swing.JPanel {
     
     private void initRoleComboBox(Organization organization){
         cmbxRole.removeAllItems();
+        //cmbxRole.addItem("--Select--");
         for (Role role : organization.getSupportedRole()){
             cmbxRole.addItem(role);
         }

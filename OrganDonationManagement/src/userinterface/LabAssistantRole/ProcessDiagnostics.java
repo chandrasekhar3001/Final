@@ -62,9 +62,7 @@ public class ProcessDiagnostics extends javax.swing.JPanel {
         int counter=0;
         
         System.out.println("Test Array in lab process"+request.getTests());
-        for (String s : request.getTests()) {
-            JOptionPane.showMessageDialog(null, s+ " This is S");
-           
+        for (String s : request.getTests()) {          
             
             if (s.equalsIgnoreCase("blood typing")) {
                 txt_bloodtyping.setVisible(true);
@@ -360,7 +358,6 @@ public class ProcessDiagnostics extends javax.swing.JPanel {
 
     private void btn_genresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_genresActionPerformed
         request.setTestResult(txt_resultcomment.getText());
-        request.setStatus("Completed");
         String test1 = cb_bloodTyping.getSelectedItem().toString();    
         String test2 = cb_survival.getSelectedItem().toString();
         String test3 = cb_reactiveAntiBodies.getSelectedItem().toString();
@@ -370,8 +367,6 @@ public class ProcessDiagnostics extends javax.swing.JPanel {
         String test7 = cb_random1.getSelectedItem().toString();
         String test8 = cb_random2.getSelectedItem().toString();
         String test9 = cb_random3.getSelectedItem().toString();
-         
-        JOptionPane.showMessageDialog(null,"Report has been sent");
         
         ArrayList<String> sample= new ArrayList<>();
         //Blff Typing, Survival, Reactive antibodies// random//comments
@@ -402,8 +397,25 @@ public class ProcessDiagnostics extends javax.swing.JPanel {
         if(!(test9=="-"||test9.isBlank()||test9.isEmpty())){
             sample.add(test9);
         }
+        
+        boolean check;
+        check=sample.size()>0;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Please perform the tests for proper evaluation");
+            return;
+        }
         request.setTestData(sample);
+        request.setStatus("Completed");
+        JOptionPane.showMessageDialog(null,"Report has been sent");
         System.out.println(request.getTestData()+"This is test data");
+        
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DiagnosticsWorkArea dwjp = (DiagnosticsWorkArea) component;
+        dwjp.initWorktable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btn_genresActionPerformed
 
     private void cb_reactiveAntiBodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_reactiveAntiBodiesActionPerformed

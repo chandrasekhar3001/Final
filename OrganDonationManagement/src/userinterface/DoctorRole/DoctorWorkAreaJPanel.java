@@ -62,8 +62,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         lblAge.setVisible(false);
         lblName1.setVisible(false);
         txtName.setVisible(false);
-        txtSex.setVisible(false);
-        lblSex.setVisible(false);
+		        requestTestJButton.setVisible(false);
         
         
         cb_patients();
@@ -105,7 +104,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         model.setRowCount(0);
-        JOptionPane.showMessageDialog(null, userAccount.getWorkQueue().getWorkRequestList().size());
+        //JOptionPane.showMessageDialog(null, userAccount.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
             if (request instanceof DiagnosticsWorkRequest){
                 Object[] row = new Object[6];
@@ -158,12 +157,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         lblPatient = new javax.swing.JLabel();
         cb_patients = new javax.swing.JComboBox();
         lblAge = new javax.swing.JLabel();
-        lblSex = new javax.swing.JLabel();
         lblName1 = new javax.swing.JLabel();
         viewbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtSex = new javax.swing.JTextField();
         txtAge = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         btn_viewPat = new javax.swing.JButton();
@@ -175,7 +172,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         chk_liver = new javax.swing.JCheckBox();
         chk_pancreas = new javax.swing.JCheckBox();
         btn_therapist = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        chk_lungs = new javax.swing.JCheckBox();
+        chk_intestines = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -271,10 +269,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         lblAge.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblAge.setText("Age:");
 
-        lblSex.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        lblSex.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblSex.setText("Sex:");
-
         lblName1.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblName1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblName1.setText("Name:");
@@ -295,9 +289,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Cambria", 3, 18)); // NOI18N
         jLabel5.setText("Patient details - ");
-
-        txtSex.setEditable(false);
-        txtSex.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
 
         txtAge.setEditable(false);
         txtAge.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
@@ -345,12 +336,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        chk_lungs.setText("Lungs");
+        chk_lungs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chk_lungsActionPerformed(evt);
             }
         });
+
+        chk_intestines.setText("Intestines");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -367,8 +360,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblName1)
-                                    .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSex, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -376,24 +368,29 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                         .addComponent(viewbtn)
                                         .addGap(18, 18, 18)
                                         .addComponent(requestOrganJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_therapist, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
+                                        .addGap(57, 57, 57)
+                                        .addComponent(btn_therapist)
+                                        .addGap(57, 57, 57)
                                         .addComponent(jButton2)
                                         .addGap(27, 27, 27)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(chk_heart)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(chk_heart)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(2, 2, 2)
+                                                        .addComponent(chk_liver)))
                                                 .addGap(24, 24, 24)
-                                                .addComponent(chk_kidney))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(chk_pancreas)
+                                                    .addComponent(chk_kidney)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(2, 2, 2)
-                                                .addComponent(chk_liver)
+                                                .addComponent(chk_lungs)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(chk_pancreas))))
+                                                .addComponent(chk_intestines))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(60, 60, 60)
                                                 .addComponent(requestTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -401,7 +398,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton1)
                                             .addComponent(jLabel2)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
@@ -443,22 +439,16 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(20, 20, 20)
                                 .addComponent(lblName1)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblAge)
-                                .addGap(28, 28, 28)
-                                .addComponent(lblSex))
+                                .addComponent(lblAge))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
+                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(79, 79, 79)
                         .addComponent(requestTestJButton)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(41, 41, 41)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -471,17 +461,21 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(viewbtn)
                         .addComponent(requestOrganJButton)
-                        .addComponent(btn_therapist, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_therapist))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chk_heart)
                             .addComponent(chk_kidney))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(chk_liver)
                             .addComponent(chk_pancreas))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_lungs)
+                    .addComponent(chk_intestines))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -493,7 +487,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 //        
 //        DiagnosticsWorkRequest testRequest = (DiagnosticsWorkRequest) workRequestJTable.getValueAt(selectedRow,0);
 //      
-        
         
         String string = cb_patients.getSelectedItem().toString();
         String[] parts = string.split(":");
@@ -516,8 +509,21 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     private void requestOrganJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestOrganJButtonActionPerformed
         // TODO add your handling code here:
-        Patient p=patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString());
+        boolean check;
+        check=workRequestJTable.getSelectedRow()>-1;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select a patient");
+            return;
+        }
         
+        
+        
+        
+        
+        
+        
+        Patient p=patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString());
+       
         //JPanel userProcessContainer, UserAccount account, Medical organization, Enterprise enterprise, EcoSystem ecosystem, Network network
         
         
@@ -538,11 +544,19 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cb_patientsActionPerformed
 
     private void viewbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewbtnActionPerformed
+        boolean check;
+        check=workRequestJTable.getSelectedRow()>-1;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select a patient");
+            return;
+        }
+        
         Patient p=patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString());
         
         String id=workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString();
         String labassist=workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 3).toString();
-        TestDataJPanel tdj=new TestDataJPanel(userProcessContainer, userAccount,id,p,labassist);
+        
+        TestDataJPanel tdj=new TestDataJPanel(userProcessContainer, userAccount,id,p,labassist,enterprise,organization, ecosystem,network);
         userProcessContainer.add("Lab test",tdj);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -558,24 +572,26 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btn_viewPatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_viewPatActionPerformed
         // TODO add your handling code here:
+        boolean check;
+        check=cb_patients.getSelectedIndex()>0;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select a patient");
+        }
         String string = cb_patients.getSelectedItem().toString();
         String[] parts = string.split(":");
         String id = parts[0].trim();
         for(Patient p: organization.getPatientDirectory().getPatientList()){
             if(id.equalsIgnoreCase(""+p.getId())){
                 
-                lblSex.setVisible(true);
                 lblAge.setVisible(true);
                 lblName1.setVisible(true);
                 txtName.setVisible(true);
                 txtAge.setVisible(true);
-                txtSex.setVisible(true);
                 txtAge.setText(p.getAge());
-                txtSex.setText(p.getSex());
                 txtName.setText(p.getName());
                 txtAge.setEnabled(false);
                 txtName.setEnabled(false);
-                txtSex.setEnabled(false);
+                requestTestJButton.setVisible(true);
             
             }
         }
@@ -583,6 +599,19 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        boolean check;
+        check=workRequestJTable.getSelectedRow()>-1;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select a patient");
+            return;
+        }
+        check=(chk_heart.isSelected()||chk_kidney.isSelected()||chk_liver.isSelected()||chk_pancreas.isSelected()||chk_lungs.isSelected()||chk_intestines.isSelected());
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select atleast one checkbox");
+            return;
+        }
+        
+        
         OrganProcureWorkRequest request = new OrganProcureWorkRequest();
         request.setPatientAccount(patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString()));
         
@@ -629,43 +658,33 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btn_therapistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_therapistActionPerformed
         // TODO add your handling code here:
-        TherapistWorkRequest request = new TherapistWorkRequest();
-        request.setPatientAccount(patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString()));
-        Enterprise ent = null;
-        request.setSender(userAccount);
-        request.setStatus("Requested");
-
-        for(Network n: ecosystem.getNetworkList()){
-            for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
-                if(e instanceof TherapyEnterprise){
-                    JOptionPane.showMessageDialog(null, "instance approved");
-                    ent=e;
-                    ent.getWorkQueue().getWorkRequestList().add(request);
-                    userAccount.getWorkQueue().getWorkRequestList().add(request);
-                }
-            }
+        boolean check;
+        check=workRequestJTable.getSelectedRow()>-1;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select a patient");
+            return;
         }
-        JOptionPane.showMessageDialog(null, "Organ Procurement Requested");
-    }//GEN-LAST:event_btn_therapistActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         Patient p=patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString());
         RequestTherapyJPanel tdj=new RequestTherapyJPanel(userProcessContainer,organization, userAccount,p,ecosystem,enterprise,network);
         userProcessContainer.add("Lab test",tdj);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_therapistActionPerformed
+
+    private void chk_lungsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_lungsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_lungsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_therapist;
     private javax.swing.JButton btn_viewPat;
     private javax.swing.JComboBox cb_patients;
     private javax.swing.JCheckBox chk_heart;
+    private javax.swing.JCheckBox chk_intestines;
     private javax.swing.JCheckBox chk_kidney;
     private javax.swing.JCheckBox chk_liver;
+    private javax.swing.JCheckBox chk_lungs;
     private javax.swing.JCheckBox chk_pancreas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -677,13 +696,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lblPatient;
-    private javax.swing.JLabel lblSex;
     private javax.swing.JTable organRequestJTable;
     private javax.swing.JButton requestOrganJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtSex;
     private javax.swing.JButton viewbtn;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

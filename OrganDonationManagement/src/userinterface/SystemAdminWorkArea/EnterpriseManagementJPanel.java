@@ -64,7 +64,7 @@ public class EnterpriseManagementJPanel extends javax.swing.JPanel {
         }
         if (estEnterprises.contains(type)&&(type.getValue().equalsIgnoreCase("government")||type.getValue().equalsIgnoreCase("organ bank"))) {
             JOptionPane.showMessageDialog(null, "Only one enterprise allowed for the selected option");
-            return false;
+            return true;
         }
 
         return false;
@@ -305,9 +305,6 @@ public class EnterpriseManagementJPanel extends javax.swing.JPanel {
 
                 } else {
                     Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-                    
-                    JOptionPane.showMessageDialog(null, network.getName());
-                    JOptionPane.showMessageDialog(null, enterprise.getName());
                     
                     initEntTable();
                     txt_AddEntName.setText("");

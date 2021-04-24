@@ -5,10 +5,16 @@
  */
 package userinterface.DoctorRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Medical;
+import Business.Organization.Organization;
 import Business.Person.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.DiagnosticsWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -22,16 +28,24 @@ public class TestDataJPanel extends javax.swing.JPanel {
     String id;
     Patient patient;
     String assist;
+    Enterprise enterprise;
+    Medical organization;
+    EcoSystem ecosystem;
+    Network network;
     /**
      * Creates new form TestDataJPanel
      */
-    public TestDataJPanel(JPanel userProcessContainer, UserAccount userAccount, String id,Patient patient,String assist) {
+    public TestDataJPanel(JPanel userProcessContainer, UserAccount userAccount, String id,Patient patient,String assist,Enterprise enterprise,Medical organization, EcoSystem ecosystem,Network network) {
         initComponents();
         this.userAccount=userAccount;
         this.userProcessContainer=userProcessContainer;
         this.id=id;
         this.patient=patient;
         this.assist=assist;
+        this.enterprise=enterprise;
+        this.organization=organization;
+        this.ecosystem=ecosystem;
+        this.network=network;
         txtArea_chandu.setText(populatevalues());
         
     }
@@ -76,11 +90,11 @@ public class TestDataJPanel extends javax.swing.JPanel {
                         .addGap(278, 278, 278)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,14 +104,14 @@ public class TestDataJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(191, 191, 191))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public String populatevalues(){
-        String test="******************** TEST RESULTS ***********************\n";
+        String test="            ******************** TEST RESULTS ***********************\n";
         test+="\nPatient ID : "+id+"\n";
         test+="\nPatient Name : "+patient.getName()+"\n";
         test+="\nLab Assistant :"+assist+"\n";
@@ -164,6 +178,10 @@ public class TestDataJPanel extends javax.swing.JPanel {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DoctorWorkAreaJPanel sa=new DoctorWorkAreaJPanel(userProcessContainer,userAccount,organization,enterprise,ecosystem,network);
+        userProcessContainer.add("Customer Adding",sa);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

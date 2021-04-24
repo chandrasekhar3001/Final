@@ -16,6 +16,7 @@ import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrganProcureWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,6 +69,7 @@ public class OrganManagement extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         tblOrganworkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,6 +129,13 @@ public class OrganManagement extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Organ Procurement Requests");
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,6 +154,10 @@ public class OrganManagement extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +171,11 @@ public class OrganManagement extends javax.swing.JPanel {
                     .addComponent(btnProcure)
                     .addComponent(cmbxfacalities, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAssign))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,6 +252,13 @@ public class OrganManagement extends javax.swing.JPanel {
     private void cmbxfacalitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxfacalitiesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbxfacalitiesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void populateJTable() {
        /*  OrganProcureWorkRequest request = new OrganProcureWorkRequest();
@@ -353,6 +375,7 @@ public class OrganManagement extends javax.swing.JPanel {
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnProcure;
     private javax.swing.JComboBox<String> cmbxfacalities;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
