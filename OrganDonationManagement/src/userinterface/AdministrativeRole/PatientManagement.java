@@ -120,6 +120,10 @@ public class PatientManagement extends javax.swing.JPanel {
 
         cb_gen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Male", "Female", "Others" }));
 
+        patCount.setBackground(new java.awt.Color(255, 51, 0));
+        patCount.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        patCount.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,7 +223,7 @@ public class PatientManagement extends javax.swing.JPanel {
                 }
             }
         }
-        patCount.setText(""+counter);
+        patCount.setText(""+counter+" Patients are in line");
     
     }
     
@@ -273,13 +277,15 @@ public class PatientManagement extends javax.swing.JPanel {
         for(int i=0;i<organizationDirectory.getOrganizationList().size();i++){
             if(organizationDirectory.getOrganizationList().get(i).getName().equalsIgnoreCase(cb_dept.getSelectedItem().toString())){
                 Organization organization=organizationDirectory.getOrganizationList().get(i);
-                JOptionPane.showMessageDialog(null, organization.getPatientDirectory());
                 organization.getPatientDirectory().createPatient(ecoSystem.getPatientId(),txt_name.getText(),txt_age.getText(),cb_gen.getSelectedItem().toString(),txt_phnNum.getText(),cb_dept.getSelectedItem().toString(),cb_doctor.getSelectedItem().toString(),true,false,false,organs,testData);
                 ecoSystem.incPatientId();
                 break;
             }
         }
-        
+        JOptionPane.showMessageDialog(null, "Your appointment is confirmed!");
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
         
     }//GEN-LAST:event_btn_saveActionPerformed
 

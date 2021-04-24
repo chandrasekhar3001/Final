@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Person.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.TherapistWorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,7 +30,7 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     String id;
-    Organization org;
+    Medical org;
     EcoSystem ecoSystem;
     Enterprise enterprise;
     Network network;
@@ -79,6 +80,7 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
         btn_submit = new javax.swing.JButton();
         cb_centers = new javax.swing.JComboBox<>();
         cb_therapy = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         lbl_patientID.setText("Patient ID :");
 
@@ -121,6 +123,13 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,13 +143,15 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(lbl_patientID))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_patID)
-                    .addComponent(txt_patname)
-                    .addComponent(cb_network, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_centers, 0, 198, Short.MAX_VALUE)
-                    .addComponent(cb_therapy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txt_patID)
+                        .addComponent(txt_patname)
+                        .addComponent(cb_network, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_centers, 0, 198, Short.MAX_VALUE)
+                        .addComponent(cb_therapy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(264, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -168,7 +179,9 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
                     .addComponent(cb_therapy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addComponent(btn_submit)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,9 +225,18 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
 
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
         // TODO add your handling code here:
+        boolean check;
+        check=(!(cb_centers.getSelectedItem()==null||cb_network.getSelectedItem()==null||cb_therapy.getSelectedItem()==null));
+        
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select proper options (or) doctors not available");
+            return;
+        }
+        
+        
         TherapistWorkRequest request = new TherapistWorkRequest();
         request.setPatientAccount(p);
-        Organization org = null;
+        Organization orga = null;
         request.setSender(userAccount);
         request.setStatus("Requested");
 
@@ -224,8 +246,7 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
                     if(e instanceof TherapyEnterprise&&e.getName().equalsIgnoreCase(cb_centers.getSelectedItem().toString())){
                         for(Organization o:e.getOrganizationDirectory().getOrganizationList()){
                             if(o.getName().equalsIgnoreCase(cb_therapy.getSelectedItem().toString())){
-                                JOptionPane.showMessageDialog(null, "instance approved");
-                                org=o;
+                                orga=o;
                                 o.getWorkQueue().getWorkRequestList().add(request);
                                 userAccount.getWorkQueue().getWorkRequestList().add(request);
                                 JOptionPane.showMessageDialog(null, "Organ Procurement Requested");
@@ -236,7 +257,20 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
             }
         }
         
+        DoctorWorkAreaJPanel sa=new DoctorWorkAreaJPanel(userProcessContainer,userAccount,org,enterprise,ecoSystem,network);
+        userProcessContainer.add("Customer Adding",sa);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_btn_submitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DoctorWorkAreaJPanel sa=new DoctorWorkAreaJPanel(userProcessContainer,userAccount,org,enterprise,ecoSystem,network);
+        userProcessContainer.add("Customer Adding",sa);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,6 +278,7 @@ public class RequestTherapyJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cb_centers;
     private javax.swing.JComboBox<String> cb_network;
     private javax.swing.JComboBox<String> cb_therapy;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

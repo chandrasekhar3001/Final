@@ -73,9 +73,7 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
     private void initTable(){
         DefaultTableModel model = (DefaultTableModel) tblCurrentOrganizations.getModel();
         model.setRowCount(0);
-        JOptionPane.showMessageDialog(null, organizationDirectory.getOrganizationList());
         for (Organization organization : organizationDirectory.getOrganizationList()){
-            JOptionPane.showMessageDialog(null, organization.getOrganizationID()+organization.getName()+organization.getType());
             Object[] row = new Object[2];
             row[0] = organization.getName();
             row[1]= organization.getType().getValue();
@@ -239,10 +237,15 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
 
     private void btnAddOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrganizationActionPerformed
 
+        boolean check;
+        check=cmbxOrganizationType.getSelectedIndex()>0;
+        if(!check){
+            JOptionPane.showMessageDialog(null, "Select an Organisation");
+        }
+        
         Type type = (Type) cmbxOrganizationType.getSelectedItem();
-        JOptionPane.showMessageDialog(null, type.getValue());
-        JOptionPane.showMessageDialog(null, txtOrganizationName.getText());
         organizationDirectory.createOrganization(type,txtOrganizationName.getText());
+        txtOrganizationName.setText("");
         initTable();
     }//GEN-LAST:event_btnAddOrganizationActionPerformed
 

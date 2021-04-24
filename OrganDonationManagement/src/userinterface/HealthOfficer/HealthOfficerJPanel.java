@@ -84,7 +84,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Venue", "Date", "Timel", "Status", "Amount", "Comments"
+                "Name", "Venue", "Date", "Time", "Status", "Amount", "Comments"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -135,10 +135,20 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable2);
 
         btnSelectFile.setText("Select a file");
+        btnSelectFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectFileActionPerformed(evt);
+            }
+        });
 
         lblFilePath.setText("file path");
 
         btnSave.setText("Publish");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("List of Donors");
@@ -238,6 +248,14 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         populateRequestTable();
         
     }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSelectFileActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

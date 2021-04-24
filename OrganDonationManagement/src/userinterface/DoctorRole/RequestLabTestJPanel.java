@@ -368,6 +368,11 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         patientAccount.setAlive(false);// to not repeat patient
         requestTestJButton.setEnabled(false);}
         
+        DoctorWorkAreaJPanel sa=new DoctorWorkAreaJPanel(userProcessContainer,userAccount,organization,enterprise,ecosystem,network);
+        userProcessContainer.add("Customer Adding",sa);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
