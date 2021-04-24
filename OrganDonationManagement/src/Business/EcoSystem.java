@@ -38,7 +38,7 @@ public class EcoSystem extends Organization{
     }
     
      public Donor createDonor(String name, int age, String sex, String bloodGroup, String contactNum, String address, String sign,
-                String emailAdd, String emergencyPOC, String emergencyPOC_Num, List<String >organs){
+                String emailAdd, String emergencyPOC, String emergencyPOC_Num, boolean isOrganAvaiNow,List<String >organs){
         
         Donor donor = new Donor();
         donor.setName(name);

@@ -18,9 +18,12 @@ import Business.Waitlist.Wait;
 import Business.WorkQueue.OrganProcureWorkRequest;
 import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
+import java.awt.Desktop;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import userinterface.DonorRole.DonorWorkAreaJPanel;
+import userinterface.DonorRole.DonorRegistrationFormJPanel;
+import userinterface.HealthOfficer.HealthOfficerJPanel;
 
 /**
  *
@@ -38,7 +41,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1680, 1050);
+        this.setSize(1200, 800);
         
         if(system.getEmployeeId()==0){
             system.setEmployeeId(20211001);
@@ -55,7 +58,13 @@ public class MainJFrame extends javax.swing.JFrame {
         if(system.getWorkQueue()==null){
             system.setWorkQueue(new WorkQueue());
         }
+       
 
+        
+        
+        
+        //JOptionPane.showMessageDialog(null,system.getDonorDirectory().size());
+        //JOptionPane.showMessageDialog(null, system.getWaitList().size());
         //system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(1).getOrganizationDirectory().getOrganizationList().get(0).setPatientDirectory(new PatientDirectory());
         /*System.out.println(system.getPatientId());
         System.out.println(system.getEmployeeId());
@@ -115,31 +124,55 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        btn_login = new javax.swing.JButton();
-        txt_username = new javax.swing.JTextField();
-        txt_password = new javax.swing.JPasswordField();
-        lbl_username = new javax.swing.JLabel();
-        lbl_password = new javax.swing.JLabel();
         loginJLabel = new javax.swing.JLabel();
         btn_logout = new javax.swing.JButton();
-        btn_donor = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txt_username = new javax.swing.JTextField();
+        lbl_username = new javax.swing.JLabel();
+        lbl_password = new javax.swing.JLabel();
+        txt_password = new javax.swing.JPasswordField();
+        btn_login = new javax.swing.JButton();
+        btn_donor = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jSplitPane1.setBorder(null);
+        jSplitPane1.setDividerLocation(50);
+        jSplitPane1.setDividerSize(0);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(250, 1080));
+        jPanel1.setLayout(null);
+        jPanel1.add(loginJLabel);
+        loginJLabel.setBounds(935, 399, 0, 0);
 
-        btn_login.setBackground(new java.awt.Color(255, 255, 255));
-        btn_login.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btn_login.setText("Login");
-        btn_login.addActionListener(new java.awt.event.ActionListener() {
+        btn_logout.setBackground(new java.awt.Color(255, 255, 255));
+        btn_logout.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        btn_logout.setForeground(new java.awt.Color(255, 0, 51));
+        btn_logout.setText("Logout");
+        btn_logout.setEnabled(false);
+        btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loginActionPerformed(evt);
+                btn_logoutActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_logout);
+        btn_logout.setBounds(990, 20, 122, 27);
+
+        jSplitPane1.setLeftComponent(jPanel1);
+
+        container.setBackground(new java.awt.Color(204, 204, 204));
+        container.setPreferredSize(new java.awt.Dimension(1670, 1080));
+        container.setLayout(new java.awt.CardLayout());
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 800));
+        jPanel2.setLayout(null);
 
         txt_username.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         txt_username.setToolTipText("Enter your username");
@@ -149,24 +182,34 @@ public class MainJFrame extends javax.swing.JFrame {
                 txt_usernameKeyTyped(evt);
             }
         });
-
-        txt_password.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jPanel2.add(txt_username);
+        txt_username.setBounds(440, 248, 360, 30);
 
         lbl_username.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         lbl_username.setText("Username:");
+        jPanel2.add(lbl_username);
+        lbl_username.setBounds(332, 260, 90, 18);
 
         lbl_password.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         lbl_password.setText("Password:");
+        jPanel2.add(lbl_password);
+        lbl_password.setBounds(330, 300, 90, 18);
 
-        btn_logout.setBackground(new java.awt.Color(255, 255, 255));
-        btn_logout.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        btn_logout.setText("Logout");
-        btn_logout.setEnabled(false);
-        btn_logout.addActionListener(new java.awt.event.ActionListener() {
+        txt_password.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jPanel2.add(txt_password);
+        txt_password.setBounds(440, 288, 362, 30);
+
+        btn_login.setBackground(new java.awt.Color(255, 255, 255));
+        btn_login.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btn_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login_24px.png"))); // NOI18N
+        btn_login.setText("Login");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_logoutActionPerformed(evt);
+                btn_loginActionPerformed(evt);
             }
         });
+        jPanel2.add(btn_login);
+        btn_login.setBounds(530, 330, 114, 33);
 
         btn_donor.setBackground(new java.awt.Color(255, 255, 255));
         btn_donor.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
@@ -176,70 +219,25 @@ public class MainJFrame extends javax.swing.JFrame {
                 btn_donorActionPerformed(evt);
             }
         });
+        jPanel2.add(btn_donor);
+        btn_donor.setBounds(434, 370, 370, 20);
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Login");
+        jButton1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jButton1.setText("View Policies");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(430, 400, 380, 20);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginJLabel)
-                .addGap(266, 266, 266))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_donor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbl_password)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_password))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbl_username)
-                        .addGap(9, 9, 9)
-                        .addComponent(txt_username))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel4)
-                .addGap(133, 133, 133)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_username)
-                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_password)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_login)
-                    .addComponent(btn_logout))
-                .addGap(40, 40, 40)
-                .addComponent(btn_donor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginJLabel)
-                .addContainerGap(681, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/latestpic.jpg"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(0, -20, 1210, 840);
 
-        jSplitPane1.setLeftComponent(jPanel1);
+        container.add(jPanel2, "card2");
 
-        container.setBackground(new java.awt.Color(204, 204, 204));
-        container.setPreferredSize(new java.awt.Dimension(1670, 1080));
-        container.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(container);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -257,7 +255,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         //DonorWorkAreaJPanel donorJPanel = new DonorWorkAreaJPanel(container, inOrganization, inEnterprise, system);
         //SplitPane.setRightComponent(donorJPanel);
-        DonorWorkAreaJPanel donorWorkAreaJPanel = new DonorWorkAreaJPanel(container, system, donorDirectory, dB4OUtil);
+        DonorRegistrationFormJPanel donorWorkAreaJPanel = new DonorRegistrationFormJPanel(container, system, donorDirectory, dB4OUtil);
           container.add("donorWorkAreaJPanel", donorWorkAreaJPanel);
           CardLayout layout=(CardLayout)container.getLayout();
           layout.next(container);
@@ -277,7 +275,7 @@ public class MainJFrame extends javax.swing.JFrame {
         txt_password.setText("");
 
         container.removeAll();
-
+        container.add("jpanel2",jPanel2); 
         CardLayout layout=(CardLayout)container.getLayout();
         layout.next(container);
         dB4OUtil.storeSystem(system);
@@ -355,6 +353,27 @@ public class MainJFrame extends javax.swing.JFrame {
         txt_password.setEnabled(false);
     }//GEN-LAST:event_btn_loginActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+         File file = new File(HealthOfficerJPanel.a);
+         if(file.exists()){
+             if(Desktop.isDesktopSupported()){
+             Desktop.getDesktop().open(file);}
+         else{
+          System.out.println("hai");
+         }}else{
+                System.out.println("hello"); 
+                 }
+         
+        
+        
+        }catch(Exception e){
+         JOptionPane.showMessageDialog(this, "No Policies Published");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,8 +413,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_logout;
     private javax.swing.JPanel container;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbl_password;
     private javax.swing.JLabel lbl_username;

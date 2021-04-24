@@ -14,6 +14,7 @@ import Business.Organization.Facilities;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrganMatchWorkRequest;
 import Business.WorkQueue.OrganProcureWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -48,6 +49,7 @@ public class OrganManagement extends javax.swing.JPanel {
         initComponents();
         populateJTable();
         populateComboBox();
+        match();
         //initcb_dept();
        // txt_patId.setText(""+this.ecoSystem.getPatientId());   
     }
@@ -70,7 +72,14 @@ public class OrganManagement extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        tblOrganworkRequests.setForeground(new java.awt.Color(153, 51, 0));
         tblOrganworkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -90,8 +99,13 @@ public class OrganManagement extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblOrganworkRequests.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        tblOrganworkRequests.setSelectionForeground(new java.awt.Color(255, 255, 51));
         jScrollPane1.setViewportView(tblOrganworkRequests);
 
+        btnAssign.setBackground(new java.awt.Color(0, 102, 153));
+        btnAssign.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/assign.png"))); // NOI18N
         btnAssign.setText("Assign");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +120,9 @@ public class OrganManagement extends javax.swing.JPanel {
             }
         });
 
+        btnProcure.setBackground(new java.awt.Color(0, 102, 153));
+        btnProcure.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcure.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transportation_32px.png"))); // NOI18N
         btnProcure.setText("Procure");
         btnProcure.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,13 +132,13 @@ public class OrganManagement extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Patient", "Status", "OrgansRequired", "Patient", "Doctor"
+                "Donor Patient", "Donor Doctor", "Organ", "Receiving patient", "Receiving Doctor", "Status"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -129,6 +146,10 @@ public class OrganManagement extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setText("Organ Procurement Requests");
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back3.png"))); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,13 +157,17 @@ public class OrganManagement extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Organ Matching Requests");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(316, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
@@ -151,31 +176,29 @@ public class OrganManagement extends javax.swing.JPanel {
                             .addComponent(cmbxfacalities, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(28, 28, 28)
                             .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(97, 97, 97))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(294, 294, 294))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcure)
+                    .addComponent(btnProcure, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbxfacalities, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssign))
-                .addGap(37, 37, 37)
+                    .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(343, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,72 +283,89 @@ public class OrganManagement extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void match(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        for(Network n: ecoSystem.getNetworkList()){
+            if(n.getName().equalsIgnoreCase(network.getName())) { 
+                for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
+                    if(e instanceof OrganBankEnterprise){
+                        if(e.getWorkQueue()== null){
+                            System.out.println("catched by repears");
+                            break;
+                        }
+                        for(WorkRequest wr: e.getWorkQueue().getWorkRequestList()){
+                            if(wr.getStatus().equalsIgnoreCase("procurement requested") ||wr.getStatus().equalsIgnoreCase("work started")|| wr.getStatus().equalsIgnoreCase("Assigned") ||wr.getStatus().equalsIgnoreCase("InProcess")|| wr.getStatus().equalsIgnoreCase("Completed")){
+                            if(wr instanceof OrganMatchWorkRequest){  
+                            OrganMatchWorkRequest opr = (OrganMatchWorkRequest)wr;
+                      
+                            Object[] row = new Object[6];
+                            row[0] = opr.getDonpatient().getName();
+                            row[1] = opr.getDonpatient().getDoctor();
+                            row[2] = opr.getOrgan();
+                            row[3] = opr.getRecpatient().getName();
+                            row[4] = opr.getRecpatient().getDoctor();
+                            row[5] = opr.getStatus();
+                            model.addRow(row);
+                            }
+                        }
+                    }
+                }
+            }
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
     private void populateJTable() {
-       /*  OrganProcureWorkRequest request = new OrganProcureWorkRequest();
-        request.setPatientAccount(patAccount(workRequestJTable.getValueAt(workRequestJTable.getSelectedRow(), 0).toString()));
-        
-        ArrayList<String> orList=new ArrayList<>();
-        if(chk_heart.isSelected()){
-            orList.add("Heart");
-        }
-        if(chk_kidney.isSelected()){
-            orList.add("Kidney");
-        }
-        if(chk_liver.isSelected()){
-            orList.add("Liver");
-        }
-        if(chk_pancreas.isSelected()){
-            orList.add("Pancreas");
-        }
-        request.setOrganList(orList);
-        request.setSender(userAccount);
-        request.setStatus("Sent");
-        
-      
-        // Enterprise ent = null;*/
-        //System.out.println(enterprise.getOrganizationDirectory().getOrganizationList()+"yay");
+       
+
         DefaultTableModel model = (DefaultTableModel) tblOrganworkRequests.getModel();
          model.setRowCount(0);
          for(Network n: ecoSystem.getNetworkList()){
 
-            if(n.getName().equalsIgnoreCase(network.getName())) {
-             
-             
-             
+            if(n.getName().equalsIgnoreCase(network.getName())) { 
             for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
                 if(e instanceof OrganBankEnterprise){
-                    //ent=e;
-                   // ent.getWorkQueue().getWorkRequestList().add(request);
-                    //userAccount.getWorkQueue().getWorkRequestList().add(request);
                     if(e.getWorkQueue()== null){
                         System.out.println("catched by repears");
-                      break;}
+                      break;
+                    }
                     for(WorkRequest wr: e.getWorkQueue().getWorkRequestList()){
-                        //System.out.println("size"+e.getWorkQueue().getWorkRequestList().size());
-                        if(!(wr.getStatus() ==null)){
-                        if(wr.getStatus().equalsIgnoreCase("procurement requested") ||wr.getStatus().equalsIgnoreCase("work started")|| wr.getStatus().equalsIgnoreCase("Assigned") ||wr.getStatus().equalsIgnoreCase("InProcess")|| wr.getStatus().equalsIgnoreCase("Completed")){
+                        if(wr.getStatus().equalsIgnoreCase("procurement requested") ||wr.getStatus().equalsIgnoreCase("work started")|| wr.getStatus().equalsIgnoreCase("Assigned") ||wr.getStatus().equalsIgnoreCase("InProcess")||wr.getStatus()==null|| wr.getStatus().equalsIgnoreCase("Completed")){
+                            if(wr instanceof OrganProcureWorkRequest){
                             OrganProcureWorkRequest opr = (OrganProcureWorkRequest)wr;
-                            System.out.println("In Ark space ship");
                             String a ="";
                             for( String s: opr.getOrganList()){
-                                a= s+":"+a;
+                                a= s+";"+a;
                             }
-                            Object[] row = new Object[80];
-                        row[0]= opr;
-                        //row[1] = opr.getMessage();
-                        row[1]=opr.getPatient().getName();
-                        row[2] = a;
-                        row[3] = opr.getPatient().getDoctor();
-                        row[4] = opr.getMessage();
-                        row[5] = opr.getStatus();
-                        model.addRow(row);
-                        //break;
-                        }}
-                        else{
+                            Object[] row = new Object[6];
+                            row[0] = opr;
+                            row[1] = opr.getPatient().getName();
+                            row[2] = a;
+                            row[3] = opr.getPatient().getDoctor();
+                            row[4] = opr.getMessage();
+                            row[5] = opr.getStatus();
+                            model.addRow(row);
+                            }
                         }
-                      
-                     
-                    
                     }
                 }
             }
@@ -365,9 +405,6 @@ public class OrganManagement extends javax.swing.JPanel {
             }
         }
          */
-        
-       
-        JOptionPane.showMessageDialog(null, "Organ Procurement Requested");
     }
 
 
@@ -377,6 +414,7 @@ public class OrganManagement extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbxfacalities;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

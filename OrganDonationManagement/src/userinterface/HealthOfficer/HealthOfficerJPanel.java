@@ -11,9 +11,12 @@ import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import Business.Organization.AwarnessCampaign;
 import Business.Organization.PoliciesAndFinance;
+import Business.Person.Donor;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EventWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +37,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EnterpriseDirectory enterpriseDirectory;
     private EcoSystem ecosystem;
+    public static  String a;
     public HealthOfficerJPanel(JPanel userProcessContainer, UserAccount account, PoliciesAndFinance organization, Enterprise enterprise, EcoSystem business, Network network) {
        
         initComponents();
@@ -48,6 +52,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         //quals.setText(userAccount.getQualifications());
          // profilepic();
           populateRequestTable();
+          populate();
     }
 
     /**
@@ -64,18 +69,22 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         tblEvent = new javax.swing.JTable();
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
-        comDonor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        btnSelectFile = new javax.swing.JButton();
-        lblFilePath = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         lblNGOtitle.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        lblNGOtitle.setText("Funding Requests for Events");
+        lblNGOtitle.setText("Event Fund Requests ");
 
+        tblEvent.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblEvent.setForeground(new java.awt.Color(153, 0, 0));
         tblEvent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -95,8 +104,14 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblEvent.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        tblEvent.setSelectionForeground(new java.awt.Color(255, 255, 51));
         jScrollPane1.setViewportView(tblEvent);
 
+        btnAccept.setBackground(new java.awt.Color(0, 102, 153));
+        btnAccept.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        btnAccept.setForeground(new java.awt.Color(255, 255, 255));
+        btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/acccept.png"))); // NOI18N
         btnAccept.setText("ACCEPT");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +119,10 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDecline.setBackground(new java.awt.Color(0, 102, 153));
+        btnDecline.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        btnDecline.setForeground(new java.awt.Color(255, 255, 255));
+        btnDecline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unavailable_16px.png"))); // NOI18N
         btnDecline.setText("DECLINE");
         btnDecline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,8 +130,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
             }
         });
 
-        comDonor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select Network-- ", "Item 2", "Item 3", "Item 4" }));
-
+        jTable2.setForeground(new java.awt.Color(153, 0, 0));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -121,7 +139,7 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Donor Name", "Organ to Donate"
+                "Donor Name", "Contact"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -132,92 +150,87 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        jTable2.setSelectionForeground(new java.awt.Color(255, 255, 51));
         jScrollPane2.setViewportView(jTable2);
 
-        btnSelectFile.setText("Select a file");
-        btnSelectFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectFileActionPerformed(evt);
-            }
-        });
-
-        lblFilePath.setText("file path");
-
-        btnSave.setText("Publish");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel1.setText("List of Donors");
+        jLabel1.setText("List of Donors ");
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel2.setText("Publish a Policy");
+        jLabel2.setText("Publish  Policy");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Select Policy to Publish");
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
+        jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("ChooseFile");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(139, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAccept)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnDecline))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btnAccept)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnDecline))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSelectFile)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblFilePath))))
+                            .addComponent(lblNGOtitle)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNGOtitle)))
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
-                .addGap(21, 21, 21))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAccept, btnDecline});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(lblNGOtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAccept)
                     .addComponent(btnDecline))
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comDonor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnSelectFile)
-                    .addComponent(lblFilePath))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jButton1))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAccept, btnDecline});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
@@ -249,27 +262,33 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnAcceptActionPerformed
 
-    private void btnSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFileActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSelectFileActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int showOPenDialouge =fc.showOpenDialog(null);
+      //  fc.setCurrentDirectory(new java.io.File("C:/Users/"));
+       // fc.setDialogTitle("Hello World");
+       // fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if(fc.showOpenDialog(jButton1)== JFileChooser.APPROVE_OPTION){
+         File selectedImageFile =fc.getSelectedFile();
+         String selectedImagePath =selectedImageFile.getAbsolutePath();
+         a =selectedImagePath;
+         System.out.println(selectedImagePath);
+        JOptionPane.showMessageDialog(this, "Policy Published");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnDecline;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnSelectFile;
-    private javax.swing.JComboBox<String> comDonor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JLabel lblFilePath;
     private javax.swing.JLabel lblNGOtitle;
     private javax.swing.JTable tblEvent;
     // End of variables declaration//GEN-END:variables
@@ -292,6 +311,18 @@ public class HealthOfficerJPanel extends javax.swing.JPanel {
             row[6] = ((EventWorkRequest) request).getStatus();
             
             model.addRow(row);}
+        }
+    }
+    private void populate() {
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        
+        model.setRowCount(0);
+        for (Donor d : ecosystem.getDonorDirectory()){
+            Object[] row = new Object[3];
+            row[0] = d.getName();
+            row[1] = d.getContactNum();
+            
+            model.addRow(row);
         }
     }
 }

@@ -19,6 +19,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -82,21 +83,32 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jLabel1.setText("Requesting an organ for");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jLabel1.setText("Organ Request");
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel2.setText("Patient ID :");
 
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Patient Name :");
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Required Organ :");
 
+        jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Age Group :");
 
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Pediatric Status :");
 
+        jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel7.setText("Survival Benefit :");
 
+        jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel8.setText("Urgency :");
 
         cb_reqOrgan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Heart", "Kidney", "Liver", "Lungs", "Pancreas", "Intestines" }));
@@ -109,6 +121,10 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
 
         cb_urgency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Critical", "Not Critical" }));
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/submit.png"))); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +132,10 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 102, 153));
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back3.png"))); // NOI18N
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,24 +150,20 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addGap(352, 352, 352)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(12, 12, 12)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(44, 44, 44)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt_patId)
                                 .addComponent(txt_patname)
@@ -155,18 +171,24 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
                                 .addComponent(cb_age, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cb_ped, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cb_survival, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_urgency, 0, 256, Short.MAX_VALUE)))))
-                .addContainerGap(209, Short.MAX_VALUE))
+                                .addComponent(cb_urgency, 0, 256, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(88, 88, 88)
+                                    .addComponent(jButton1)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton2)))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_patId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_patId, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -191,12 +213,15 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(cb_urgency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(95, 95, 95))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cb_age, cb_ped, cb_reqOrgan, cb_survival, cb_urgency, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, txt_patId, txt_patname});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -224,24 +249,24 @@ public class RequestOrganJpanel extends javax.swing.JPanel {
 
         //Patient patient, String age, String ped, String survival, String urgency, String organ, int waitlist
         int score=0;
-        
-        for(Wait w: ecoSystem.getWaitList()){
-            if(w.getOrgan().equalsIgnoreCase(cb_reqOrgan.getSelectedItem().toString())&&w.getWaitlist()==calculateScore()){
-                score=calculateScore()+(ecoSystem.getWaitList().size()/10);
-            }else{
-                score=calculateScore();
+        if(ecoSystem.getWaitList().size()<1){
+            score=calculateScore();
+        }else{
+            Collections.sort(ecoSystem.getWaitList());
+            for(Wait w: ecoSystem.getWaitList()){
+                if(w.getOrgan().equalsIgnoreCase(cb_reqOrgan.getSelectedItem().toString())){
+                    score=w.getWaitlist()-1;
+                    break;
+                }else{
+                    score=calculateScore();
+                }
             }
+        
         }
         
         Wait w=new Wait(p,cb_age.getSelectedItem().toString(),cb_ped.getSelectedItem().toString(),cb_survival.getSelectedItem().toString(),cb_urgency.getSelectedItem().toString(),cb_reqOrgan.getSelectedItem().toString(),score,0);
         ecoSystem.addWaitlist(w);
         
-        Ranking r=new Ranking(ecoSystem);
-        r.rank();
-        for(Wait wait: ecoSystem.getWaitList()){
-            int rank=r.findrank(""+wait.getPatient().getId(), wait.getWaitlist());
-            wait.setRank(rank);
-        }
         
         
         

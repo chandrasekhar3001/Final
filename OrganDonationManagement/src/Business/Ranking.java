@@ -7,6 +7,7 @@ package Business;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,47 +15,29 @@ import java.util.Collections;
  */
 public class Ranking {
     EcoSystem ecoSystem;
-    ArrayList<Integer> heart=new ArrayList<>();
-        ArrayList<Integer> kidney=new ArrayList<>();
-        ArrayList<Integer> liver=new ArrayList<>();
-        ArrayList<Integer> lungs=new ArrayList<>();
-        ArrayList<Integer> pancreas=new ArrayList<>();
-        ArrayList<Integer> intestines=new ArrayList<>();
+    ArrayList<Double> heart=new ArrayList<>();
+        ArrayList<Double> kidney=new ArrayList<>();
+        ArrayList<Double> liver=new ArrayList<>();
+        ArrayList<Double> lungs=new ArrayList<>();
+        ArrayList<Double> pancreas=new ArrayList<>();
+        ArrayList<Double> intestines=new ArrayList<>();
     public Ranking(EcoSystem ecoSystem) {
         this.ecoSystem = ecoSystem;
     }
 
-    public void rank(){
-        /*Heart
-        Kidney
-        Liver
-        Lungs
-        Pancreas
-        Intestines*/
-        
-        for(int i=0;i<ecoSystem.getWaitList().size();i++){
-            if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("heart")){
-                heart.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            }if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("kidney")){
-                kidney.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            }if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("liver")){
-                liver.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            }if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("lungs")){
-                lungs.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            }if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("pancreas")){
-                pancreas.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            }if(ecoSystem.getWaitList().get(i).getOrgan().equalsIgnoreCase("intestines")){
-                intestines.add(ecoSystem.getWaitList().get(i).getWaitlist());
-            } 
-            //ecoSystem.getWaitList().get(i).getPatient().getId();
-            //ecoSystem.getWaitList().get(i).getOrgan();
-            //ecoSystem.getWaitList().get(i).getWaitlist();    
-        }
-        
+    public void match(String organ){
+       
+    
     }
-    public int findrank(String organ,int score){
+    
+    
+    
+  
+    public int findrank(String organ,double score){
         int rankFinal=0;
+        JOptionPane.showMessageDialog(null, organ+" This is organ");
         if(organ.equalsIgnoreCase("heart")){
+            JOptionPane.showMessageDialog(null, "1");
             Collections.sort(heart);
             rankFinal+=(heart.indexOf(score))+1;
         }else if(organ.equalsIgnoreCase("kideny")){

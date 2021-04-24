@@ -62,7 +62,14 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
         tblworkRequest = new javax.swing.JTable();
         btnInProcess = new javax.swing.JButton();
         btnCompleted = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        tblworkRequest.setForeground(new java.awt.Color(153, 51, 0));
         tblworkRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -74,8 +81,14 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
                 "Patient", "Status", "Organs", "Patient", "Doctor"
             }
         ));
+        tblworkRequest.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        tblworkRequest.setSelectionForeground(new java.awt.Color(255, 255, 0));
         jScrollPane1.setViewportView(tblworkRequest);
 
+        btnInProcess.setBackground(new java.awt.Color(0, 102, 153));
+        btnInProcess.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInProcess.setForeground(new java.awt.Color(255, 255, 255));
+        btnInProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/refresh_24px.png"))); // NOI18N
         btnInProcess.setText("InProcess");
         btnInProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +96,10 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCompleted.setBackground(new java.awt.Color(0, 102, 153));
+        btnCompleted.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCompleted.setForeground(new java.awt.Color(255, 255, 255));
+        btnCompleted.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/task_completed_30px.png"))); // NOI18N
         btnCompleted.setText("Completed");
         btnCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,31 +107,48 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel1.setText("Procurement Team Dashboard");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/procurementteam.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInProcess)
-                .addGap(48, 48, 48)
-                .addComponent(btnCompleted)
-                .addGap(99, 99, 99))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(440, 440, 440))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(489, 489, 489)
+                        .addComponent(btnInProcess)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnCompleted))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(354, 354, 354)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(416, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInProcess)
-                    .addComponent(btnCompleted))
-                .addContainerGap(100, Short.MAX_VALUE))
+                    .addComponent(btnCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(213, 213, 213))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,6 +244,8 @@ public class ProcurementTeamJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCompleted;
     private javax.swing.JButton btnInProcess;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblworkRequest;
     // End of variables declaration//GEN-END:variables

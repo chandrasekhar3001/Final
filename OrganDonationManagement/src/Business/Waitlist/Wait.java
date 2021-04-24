@@ -11,7 +11,7 @@ import Business.Person.Patient;
  *
  * @author chandrasekhar
  */
-public class Wait {
+public class Wait implements Comparable<Wait> {
     Patient patient;
     String age;
     String ped;
@@ -72,6 +72,13 @@ public class Wait {
     public void setRank(int rank) {
         this.rank = rank;
     }
-    
+
+
+    @Override
+    public int compareTo(Wait w) {
+        int comparewait=((Wait)w).getWaitlist();
+        /* For Ascending order*/
+        return this.waitlist-comparewait;
+    }
     
 }

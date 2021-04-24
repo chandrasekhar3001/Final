@@ -50,9 +50,9 @@ public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
           this.ecosystem = system;
 //          valueLabel.setText(enterprise.getName());
           
-            valueLabel.setText("Event Management");
-        profileName.setText(userAccount.getUsername());
-        quals.setText(userAccount.getQualifications());
+
+        //profileName.setText(userAccount.getUsername());
+        //quals.setText(userAccount.getQualifications());
          // profilepic();
           populateRequestTable();
     }
@@ -72,27 +72,20 @@ public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEventsDetails = new javax.swing.JTable();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        profileName = new javax.swing.JLabel();
-        quals = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        lbluser = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        Assign = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 474));
-        jPanel1.setLayout(null);
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Event Organizer Work Area");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(26, 11, 1607, 29);
 
         tblEventsDetails.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        tblEventsDetails.setForeground(new java.awt.Color(153, 0, 0));
         tblEventsDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -116,81 +109,97 @@ public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblEventsDetails.setGridColor(new java.awt.Color(0, 51, 51));
+        tblEventsDetails.setSelectionBackground(new java.awt.Color(255, 102, 102));
+        tblEventsDetails.setSelectionForeground(new java.awt.Color(255, 255, 0));
         jScrollPane1.setViewportView(tblEventsDetails);
+        if (tblEventsDetails.getColumnModel().getColumnCount() > 0) {
+            tblEventsDetails.getColumnModel().getColumn(0).setHeaderValue("Event Name");
+            tblEventsDetails.getColumnModel().getColumn(1).setHeaderValue("Venue");
+            tblEventsDetails.getColumnModel().getColumn(2).setHeaderValue("Date");
+            tblEventsDetails.getColumnModel().getColumn(3).setHeaderValue("Time");
+            tblEventsDetails.getColumnModel().getColumn(4).setHeaderValue("Amount Required");
+            tblEventsDetails.getColumnModel().getColumn(5).setHeaderValue("Comments");
+            tblEventsDetails.getColumnModel().getColumn(6).setHeaderValue("Status");
+        }
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(230, 140, 810, 200);
-
-        enterpriseLabel.setFont(new java.awt.Font("Cambria", 2, 18)); // NOI18N
-        enterpriseLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        enterpriseLabel.setText("EnterPrise :");
-        jPanel1.add(enterpriseLabel);
-        enterpriseLabel.setBounds(252, 58, 87, 30);
-
-        valueLabel.setFont(new java.awt.Font("Cambria", 2, 18)); // NOI18N
-        valueLabel.setText("<value>");
-        jPanel1.add(valueLabel);
-        valueLabel.setBounds(344, 60, 317, 26);
-
-        profileName.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        profileName.setText("UserName");
-        jPanel1.add(profileName);
-        profileName.setBounds(10, 289, 164, 22);
-
-        quals.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        quals.setText("quals");
-        jPanel1.add(quals);
-        quals.setBounds(10, 332, 164, 25);
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(222, 58, 14, 1011);
-
-        lbluser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        lbluser.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lbluser.setText("Username:");
-        jPanel1.add(lbluser);
-        lbluser.setBounds(10, 262, 84, 22);
-
+        btnCreate.setBackground(new java.awt.Color(0, 102, 153));
+        btnCreate.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/create1.png"))); // NOI18N
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCreate);
-        btnCreate.setBounds(870, 90, 70, 30);
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
+        jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/refresh_24px.png"))); // NOI18N
         jButton1.setText("Refresh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(960, 90, 80, 30);
 
-        Assign.setText("Assign");
-        Assign.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AssignActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Assign);
-        Assign.setBounds(970, 360, 80, 23);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MicrosoftTeams-image.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(105, 105, 105)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(130, 130, 130)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnCreate)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(720, 720, 720))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreate, jButton1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1670, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,83 +214,6 @@ public class EventOrganizerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         populateRequestTable();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void AssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssignActionPerformed
-        // TODO add your handling code here:
-      /*   if(jcombodeliveryMan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Please select a Delivery Man");
-            return;
-        }
-        int selectedRow = tblOrder.getSelectedRow();
-        if(selectedRow < 0) {
-            JOptionPane.showMessageDialog(null,"Select Order to assign Delivery", "Warining", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        Order order = (Order) tblOrder.getValueAt(selectedRow,0);
-        if(!order.getOrderStatus().equals("Order Ready for Pick up")){
-        JOptionPane.showMessageDialog(null,"Order should be ready for Pick Up", "Warining", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        order.setDeliveryMan(jcombodeliveryMan.getSelectedItem().toString());
-        order.setOrderStatus("Order Picked up");
-        variable= true;
-        populateTable();*/
-      int selectedRow = tblEventsDetails.getSelectedRow();
-       EventWorkRequest  ewr  = (EventWorkRequest) tblEventsDetails.getValueAt(selectedRow, 0);
-        //System.out.println(message);
-       for( Organization oa : enterprise.getOrganizationDirectory().getOrganizationList()){
-           for (Role ra :oa.getSupportedRole()){
-               System.out.println("Chandu"+ra);
-           
-           }
-          for(Employee ea : oa.getEmployeeDirectory().getEmployeeList()){
-              System.out.println("siva"+ea.getName());
-              System.out.println("sai"+ ea.getId());
-          }
-       }
-       
-        //((EventWorkRequest) request).setVenue(venueField.getText());
-        //row[1] = request.getReceiver();
-        //row[2] = ((EventWorkRequest) request).getDate();
-        //String result = ((EventWorkRequest) request).getTestResult();
-        //row[3] =((EventWorkRequest) request).getTime();
-        
-        //organization.getWorkQueue().getWorkRequestList().add(request);
-       
-        // System.out.println("Inside Organ Work Request");
-        
-
-        //        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            //            System.out.println(organization);
-            //            if (organization instanceof OrganTissueDonationOrganization) {
-                //
-                //                org = organization;
-                //                break;
-                //            }
-            //        }
-     /*   if (org != null) {
-            // OrganTissueDonationOrganization org1 = (OrganTissueDonationOrganization) org;
-            //WorkQueue wq = new WorkQueue();
-           // org.setWorkQueue(wq);
-            org.getWorkQueue().getWorkRequestList().add(request);
-            //userAccount.setWorkQueue(wq);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-            //System.out.println(org+" and work request"+org.getWorkQueue().getWorkRequestList());
-            //System.out.println("User work request and work request"+userAccount.getWorkQueue().getWorkRequestList().toString());
-
-            // System.out.println();
-            // System.out,
-            //System.out.println("Organization Work Queue--------- ");
-            //System.out.println(org.getWorkQueue().getWorkRequestList());
-            for (WorkRequest request1 : org.getWorkQueue().getWorkRequestList()){
-                System.err.println("organ work request"+request.toString());
-            }
-
-        }*/
-      
-    }//GEN-LAST:event_AssignActionPerformed
 public void populateRequestTable(){
     
     
@@ -309,18 +241,12 @@ public void populateRequestTable(){
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Assign;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbluser;
-    private javax.swing.JLabel profileName;
-    private javax.swing.JLabel quals;
     private javax.swing.JTable tblEventsDetails;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }
